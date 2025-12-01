@@ -46,3 +46,10 @@ mypy src
 ## Docker
 - Сборка: `docker build -t wine-quality-epml .`
 - Запуск контейнера с шеллом внутри: `docker run --rm -it wine-quality-epml`
+
+## Git workflow
+- Основная ветка: `master` (можно переименовать в `main`).
+- Рабочая ветка разработки: `develop`.
+- Фичи: `feature/<task>`, хотфиксы: `hotfix/<issue>`.
+- Минимальный цикл: `git checkout -b feature/<task>`, правки → PR в `develop` → слияние в `master` перед релизом. Пока можно работать прямо в `master`, но для CI/командной работы заведите `develop` и используйте фиче-ветки.
+- В GitHub создайте ветки `develop` и, по мере задач, `feature/<task>`; защитите `master` от прямых пушей.
