@@ -7,6 +7,21 @@ name = "wine_quality_epml"
 version = "0.1.0"
 description = "ML engineering homework project on wine quality."
 requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.4.10",
+    "mypy==1.10.0",
+    "pre-commit==3.6.2",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "ruff==0.4.10",
+    "mypy==1.10.0",
+    "pre-commit==3.6.2",
+]
 
 [tool.ruff]
 line-length = 100

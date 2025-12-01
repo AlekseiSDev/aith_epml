@@ -20,8 +20,29 @@
 
 Быстрые команды:
 ```bash
-pre-commit install
-pre-commit run --all-files
+uv run pre-commit install
+uv run pre-commit run --all-files
 ruff format && ruff check
 mypy src
 ```
+
+## Управление зависимостями (uv)
+- Пакетный менеджер: `uv` (пины в `pyproject.toml`, лок-файл `uv.lock`).
+- Основные зависимости пока пустые; дев-зависимости: `ruff`, `mypy`, `pre-commit` (см. `[tool.uv].dev-dependencies`).
+- Виртуальное окружение (локально):
+  ```bash
+  uv venv .venv
+  source .venv/bin/activate
+  uv sync --dev
+  ```
+- Запуски через uv:
+  ```bash
+  uv run ruff format
+  uv run ruff check
+  uv run mypy src
+  uv run pre-commit run --all-files
+  ```
+
+## Docker
+- Сборка: `docker build -t wine-quality-epml .`
+- Запуск контейнера с шеллом внутри: `docker run --rm -it wine-quality-epml`
