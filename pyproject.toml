@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wine_quality_epml"
+version = "0.1.0"
+description = "ML engineering homework project on wine quality."
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "S"]
+ignore = ["E203", "W503"]
+fixable = ["ALL"]
+
+[tool.ruff.format]
+line-length = 100

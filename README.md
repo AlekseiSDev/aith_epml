@@ -12,3 +12,16 @@
 
 ## Почему так
 Это упрощенный каркас Cookiecutter DS без генераторов: оставлены базовые примитивы (данные, ноутбуки, модели, доки) и скелет пакета под код.
+
+## Качество кода
+- Форматер/линтер: Ruff (`pyproject.toml`, включает security-правила `S`).
+- Типизация: MyPy (`mypy.ini`).
+- Хуки: `.pre-commit-config.yaml` (ruff fmt/lint, mypy).
+
+Быстрые команды:
+```bash
+pre-commit install
+pre-commit run --all-files
+ruff format && ruff check
+mypy src
+```
