@@ -1,0 +1,9 @@
+[core]
+    no_scm = True
+    remote = gcs-data
+
+[remote "local-data"]
+    url = .dvc/storage
+
+[remote "gcs-data"]
+    url = gs://aith_epml

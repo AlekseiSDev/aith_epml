@@ -3,11 +3,10 @@
 Repo for Engineering Practices in ML course. Минимальная структура в стиле Cookiecutter Data Science, развернутая вручную под проект `wine_quality_epml`.
 
 ## Структура папок
-- `data/` — данные (`raw/`, `processed/`, `interim/`, `external/`); исходник `WineQT.csv` лежит рядом.
+- `data/raw/` — данные под DVC; исходник `WineQT.csv` лежит здесь.
 - `notebooks/` — ноутбуки для EDA/экспериментов.
 - `models/` — обученные модели и артефакты.
 - `docs/` — документация и отчеты.
-- `reports/figures/` — визуализации и графики.
 - `src/wine_quality_epml/` — кодовая база проекта, пустые подпакеты `data/`, `features/`, `models/`, `visualization/` для будущих модулей.
 
 ## Почему так
