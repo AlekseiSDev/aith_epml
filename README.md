@@ -7,6 +7,7 @@ Repo for Engineering Practices in ML course. Минимальная структ
 - `notebooks/` — ноутбуки для EDA/экспериментов.
 - `models/` — обученные модели и артефакты.
 - `docs/` — документация и отчеты.
+- `reports/figures/` — визуализации и отчётные материалы (если понадобятся).
 - `src/wine_quality_epml/` — кодовая база проекта, пустые подпакеты `data/`, `features/`, `models/`, `visualization/` для будущих модулей.
 
 ## Почему так

@@ -30,8 +30,7 @@ src = ["src"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "S"]
-ignore = ["E203", "W503"]
+ignore = ["E203"]
 fixable = ["ALL"]
 
 [tool.ruff.format]
-line-length = 100
