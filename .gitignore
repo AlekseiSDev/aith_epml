@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 .egg-info/
 .mypy_cache/
+src/wine_quality_epml.egg-info
 /.ruff_cache/
 /.venv/
 AGENTS.md

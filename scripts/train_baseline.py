@@ -1,28 +1,48 @@
-"""Train a simple constant model and log metrics for DVC tracking."""
+"""Train baseline models (constant or linear) and log JSON artifacts for DVC."""
 
 from __future__ import annotations
 
 import argparse
-import csv
 import json
+import statistics
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Final
+from typing import Final, List, Sequence
 
-DATA_PATH: Final[Path] = Path("data/raw/WineQT.csv")
+from evaluate_model import compute_metrics, evaluate_model_payload, predict
+from sklearn.linear_model import LinearRegression
+
+DATA_PATH: Final[Path] = Path("data/splits/train.csv")
+EVAL_DATA_PATH: Final[Path] = Path("data/splits/eval.csv")
+TARGET_COL: Final[str] = "quality"
+ID_COL: Final[str] = "Id"
+
+
+@dataclass
+class Dataset:
+    features: List[List[float]]
+    target: List[float]
+    feature_names: List[str]
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Baseline constant model (mean/median).")
+    parser = argparse.ArgumentParser(description="Baseline models for wine quality.")
+    parser.add_argument(
+        "--model-type",
+        choices=["constant", "linear"],
+        default="constant",
+        help="Тип модели: константа или линейная регрессия.",
+    )
     parser.add_argument(
         "--strategy",
         choices=["mean", "median"],
         default="mean",
-        help="Как считать константу (mean или median).",
+        help="Как считать константу (для model-type=constant).",
     )
     parser.add_argument(
         "--tag",
         default=None,
-        help="Тэг для версии модели/метрик. Если не указан, используется strategy.",
+        help="Тэг для версии модели/метрик. Если не указан, используется model-type.",
     )
     parser.add_argument(
         "--model-path",
@@ -32,60 +52,131 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--metrics-path",
         default=None,
-        help="Кастомный путь для метрик. По умолчанию models/<tag>_metrics.json.",
+        help=(
+            "Кастомный путь для метрик (train+eval). "
+            "По умолчанию models/<tag>_train_eval_metrics.json."
+        ),
+    )
+    parser.add_argument(
+        "--data-path",
+        default=DATA_PATH,
+        help="Путь к датасету для обучения (по умолчанию data/splits/train.csv).",
+    )
+    parser.add_argument(
+        "--eval-data-path",
+        default=EVAL_DATA_PATH,
+        help="Путь к датасету для eval (по умолчанию data/splits/eval.csv).",
+    )
+    parser.add_argument(
+        "--split-name",
+        default="train",
+        help="Имя сплита для логирования в метриках.",
+    )
+    parser.add_argument(
+        "--eval-split-name",
+        default="eval",
+        help="Имя eval-сплита для логирования в метриках.",
     )
     return parser.parse_args()
 
 
-def load_target() -> list[float]:
-    rows = list(csv.DictReader(DATA_PATH.open()))
-    qualities = [float(row["quality"]) for row in rows if "quality" in row]
-    if not qualities:
-        raise ValueError("Dataset is empty or missing 'quality' column.")
-    return qualities
+def load_dataset(path: Path) -> tuple[List[List[float]], List[float], List[str]]:
+    import csv
+
+    rows = list(csv.DictReader(path.open()))
+    if not rows:
+        raise ValueError("Dataset is empty.")
+    fieldnames = rows[0].keys()
+    feature_cols = [c for c in fieldnames if c not in {TARGET_COL, ID_COL}]
+    features: List[List[float]] = []
+    target: List[float] = []
+    for row in rows:
+        target.append(float(row[TARGET_COL]))
+        features.append([float(row[col]) for col in feature_cols])
+    return features, target, feature_cols
 
 
-def constant_value(values: list[float], strategy: str) -> float:
-    if strategy == "mean":
-        return sum(values) / len(values)
-    mid = len(values) // 2
-    sorted_vals = sorted(values)
-    if len(values) % 2 == 1:
-        return sorted_vals[mid]
-    return 0.5 * (sorted_vals[mid - 1] + sorted_vals[mid])
+def constant_value(values: Sequence[float], strategy: str) -> float:
+    return (
+        float(statistics.mean(values)) if strategy == "mean" else float(statistics.median(values))
+    )
 
 
-def compute_metrics(values: list[float], pred: float) -> dict:
-    n = len(values)
-    mse = sum((v - pred) ** 2 for v in values) / n
-    mae = sum(abs(v - pred) for v in values) / n
-    return {"n": n, "prediction": pred, "mse": mse, "mae": mae}
+def fit_linear(dataset: Dataset) -> tuple[dict, float]:
+    model = LinearRegression()
+    model.fit(dataset.features, dataset.target)
+    weights = {name: float(w) for name, w in zip(dataset.feature_names, model.coef_, strict=False)}
+    bias = float(model.intercept_)
+    return weights, bias
 
 
 def main() -> None:
     args = parse_args()
-    tag = args.tag or args.strategy
+    data_path = Path(args.data_path)
+    features, target, feature_names = load_dataset(data_path)
+
+    tag = args.tag or args.model_type
     model_path = Path(args.model_path) if args.model_path else Path(f"models/{tag}_model.json")
     metrics_path = (
-        Path(args.metrics_path) if args.metrics_path else Path(f"models/{tag}_metrics.json")
+        Path(args.metrics_path)
+        if args.metrics_path
+        else Path(f"models/{tag}_train_eval_metrics.json")
     )
 
-    values = load_target()
-    pred = constant_value(values, args.strategy)
-    metrics = compute_metrics(values, pred) | {"strategy": args.strategy, "tag": tag}
+    if args.model_type == "constant":
+        value = constant_value(target, args.strategy)
+        model_payload = {
+            "model_type": "constant",
+            "strategy": args.strategy,
+            "value": value,
+            "tag": tag,
+            "target": TARGET_COL,
+            "split": args.split_name,
+            "data_path": str(data_path),
+        }
+    else:
+        dataset = Dataset(features=features, target=target, feature_names=feature_names)
+        weights, bias = fit_linear(dataset)
+        model_payload = {
+            "model_type": "linear",
+            "target": TARGET_COL,
+            "feature_names": feature_names,
+            "weights": weights,
+            "bias": bias,
+            "tag": tag,
+            "solver": "sklearn.linear_model.LinearRegression",
+            "split": args.split_name,
+            "data_path": str(data_path),
+        }
+
+    train_pred = predict(model_payload, features, feature_names)
+    train_meta = {
+        "model_type": model_payload["model_type"],
+        "tag": tag,
+        "split": args.split_name,
+        "data_path": str(data_path),
+    }
+    train_metrics = compute_metrics(target, train_pred, meta=train_meta)
+    if args.model_type == "constant":
+        train_metrics["strategy"] = args.strategy
+    else:
+        train_metrics["solver"] = "sklearn.linear_model.LinearRegression"
+
+    eval_metrics = evaluate_model_payload(
+        model=model_payload, data_path=Path(args.eval_data_path), split_name=args.eval_split_name
+    )
+
+    combined_metrics = {
+        "tag": tag,
+        "model_type": model_payload["model_type"],
+        "train": train_metrics,
+        "eval": eval_metrics,
+    }
 
     model_path.parent.mkdir(parents=True, exist_ok=True)
     metrics_path.parent.mkdir(parents=True, exist_ok=True)
-
-    model_payload = {
-        "model_type": "constant",
-        "strategy": args.strategy,
-        "value": pred,
-        "n_samples": metrics["n"],
-        "tag": tag,
-    }
     model_path.write_text(json.dumps(model_payload, indent=2) + "\n")
-    metrics_path.write_text(json.dumps(metrics, indent=2) + "\n")
+    metrics_path.write_text(json.dumps(combined_metrics, indent=2) + "\n")
 
 
 if __name__ == "__main__":

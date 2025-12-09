@@ -7,7 +7,7 @@ name = "wine_quality_epml"
 version = "0.1.0"
 description = "ML engineering homework project on wine quality."
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["scikit-learn>=1.4.0"]
 
 [project.optional-dependencies]
 dev = [
