@@ -58,7 +58,8 @@ docker run --rm -it --name wine-quality-epml -v ~/.config/gcloud:/root/.config/g
 # внутри контейнера: DVC уже установлен из uv.lock
 export DVC_SITE_CACHE_DIR="$PWD/.dvc/site-cache"
 
-# авторизация GCS (ADC): CLOUDSDK_PYTHON=/usr/bin/python3 gcloud auth application-default login
+# авторизация GCS (ADC): 
+gcloud auth application-default login
 # или задайте GOOGLE_APPLICATION_CREDENTIALS на JSON ключ; .dvc/config.local в gitignore
 
 # dvc pull данных/моделей
