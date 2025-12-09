@@ -49,9 +49,29 @@ uv run mypy src scripts
 - Сравнение версий: `dvc metrics diff --targets models/<tag>_metrics.json <rev>`; для полной цепочки используем `dvc repro` после правок `params.json`.
 - Расширенное описание и примеры: `docs/models_and_data_vcs.md`.
 
-## Docker
-- Сборка: `docker build -t wine-quality-epml .`
-- Запуск контейнера с шеллом внутри: `docker run --rm -it wine-quality-epml`
+## Docker & reproducibility
+```bash
+# сборка и запуск (gcloud CLI уже внутри образа)
+docker build -t wine-quality-epml .
+docker run --rm -it --name wine-quality-epml -v ~/.config/gcloud:/root/.config/gcloud wine-quality-epml bash
+
+# внутри контейнера: DVC уже установлен из uv.lock
+export DVC_SITE_CACHE_DIR="$PWD/.dvc/site-cache"
+
+# авторизация GCS (ADC): CLOUDSDK_PYTHON=/usr/bin/python3 gcloud auth application-default login
+# или задайте GOOGLE_APPLICATION_CREDENTIALS на JSON ключ; .dvc/config.local в gitignore
+
+# dvc pull данных/моделей
+dvc pull data/raw/WineQT.csv.dvc \
+        data/splits/train.csv.dvc data/splits/eval.csv.dvc data/splits/test.csv.dvc \
+        models/linear_v1_model.json.dvc models/linear_v1_train_eval_metrics.json.dvc
+
+# тестовая оценка сохранённой модели
+python scripts/test_model.py --model-path models/linear_v1_model.json --split-name test
+
+# закрыть контейнер (если завис): 
+docker stop wine-quality-epml
+```
 
 ## Git workflow
 - Основная ветка: `master`; рабочая ветка разработки: `develop`.
