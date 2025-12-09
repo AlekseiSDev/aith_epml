@@ -7,7 +7,10 @@ name = "wine_quality_epml"
 version = "0.1.0"
 description = "ML engineering homework project on wine quality."
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "dvc[gs]>=3.64.2",
+    "scikit-learn>=1.4.0",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -30,8 +33,7 @@ src = ["src"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "S"]
-ignore = ["E203", "W503"]
+ignore = ["E203"]
 fixable = ["ALL"]
 
 [tool.ruff.format]
-line-length = 100

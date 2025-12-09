@@ -1,0 +1,5 @@
+outs:
+- md5: a87ea8949ce91be510b002da50ca1c3c
+  size: 926
+  hash: md5
+  path: linear_v1_model.json

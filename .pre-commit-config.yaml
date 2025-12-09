@@ -13,3 +13,5 @@ repos:
           - "--config-file"
           - "mypy.ini"
           - "src"
+          - "scripts"
+        pass_filenames: false
