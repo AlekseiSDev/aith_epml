@@ -21,14 +21,14 @@ train:
 
   # One of:
   # - linear, ridge, lasso, elasticnet, svr, knn, rf, extra_trees, gbr, hgb
-  model_type: ridge
-  standardize: true
+  model_type: elasticnet
+  standardize: false
 
   linear:
     fit_intercept: true
 
   ridge:
-    alpha: 1.0
+    alpha: 10.0
 
   lasso:
     alpha: 0.1
@@ -44,18 +44,18 @@ train:
     gamma: scale
 
   knn:
-    n_neighbors: 7
+    n_neighbors: 15
     weights: distance
 
   rf:
-    n_estimators: 300
-    max_depth: null
+    n_estimators: 1500
+    max_depth: 20
     min_samples_split: 2
     random_state: 42
 
   extra_trees:
     n_estimators: 500
-    max_depth: null
+    max_depth: 12
     min_samples_split: 2
     random_state: 42
 
