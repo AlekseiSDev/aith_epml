@@ -1,0 +1,31 @@
+stages:
+  train:
+    cmd: ./.venv/bin/python scripts/train_model.py --params params.yaml
+    deps:
+      - scripts/train_model.py
+      - src/wine_quality_epml/experiments/tracking.py
+      - data/splits/train.csv
+      - data/splits/eval.csv
+      - params.yaml
+    params:
+      - train
+    outs:
+      - models/exp_model.pkl
+      - models/exp_model_meta.json
+      - reports/predictions.csv
+    metrics:
+      - reports/train_eval_metrics.json
+
+  test:
+    cmd: ./.venv/bin/python scripts/test_trained_model.py --params params.yaml
+    deps:
+      - scripts/test_trained_model.py
+      - models/exp_model.pkl
+      - data/splits/test.csv
+      - params.yaml
+    params:
+      - train
+    outs:
+      - reports/test_predictions.csv
+    metrics:
+      - reports/test_metrics.json
