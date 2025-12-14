@@ -28,7 +28,7 @@ train:
     fit_intercept: true
 
   ridge:
-    alpha: 1.0
+    alpha: 10.0
 
   lasso:
     alpha: 0.1
@@ -49,13 +49,13 @@ train:
 
   rf:
     n_estimators: 300
-    max_depth: null
+    max_depth:
     min_samples_split: 2
     random_state: 42
 
   extra_trees:
     n_estimators: 500
-    max_depth: null
+    max_depth:
     min_samples_split: 2
     random_state: 42
 
