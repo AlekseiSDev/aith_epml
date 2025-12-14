@@ -13,16 +13,16 @@ stages:
       size: 54653
     - path: params.yaml
       hash: md5
-      md5: 8404021d30c351d826b2667ecc936d21
-      size: 1234
+      md5: db6b2bae4385fe8c8f6f3a3f2860611c
+      size: 1230
     - path: scripts/train_model.py
       hash: md5
-      md5: 0829aa555e9acab60e906f005b4467e6
-      size: 6961
+      md5: dd7e46b75fcbe6dae91e0e663f2bef83
+      size: 6975
     - path: src/wine_quality_epml/experiments/tracking.py
       hash: md5
-      md5: e01744b3c6d47c4558bd88d775b29fd8
-      size: 2041
+      md5: 706ca80f6dd3d9cf52218abc1ea57806
+      size: 2076
     params:
       params.yaml:
         train:
@@ -39,12 +39,12 @@ stages:
             test_metrics: reports/test_metrics.json
             predictions: reports/predictions.csv
             test_predictions: reports/test_predictions.csv
-          model_type: ridge
-          standardize: true
+          model_type: knn
+          standardize: false
           linear:
             fit_intercept: true
           ridge:
-            alpha: 1.0
+            alpha: 10.0
           lasso:
             alpha: 0.1
           elasticnet:
@@ -56,16 +56,16 @@ stages:
             epsilon: 0.1
             gamma: scale
           knn:
-            n_neighbors: 7
+            n_neighbors: 15
             weights: distance
           rf:
             n_estimators: 300
-            max_depth:
+            max_depth: 8
             min_samples_split: 2
             random_state: 42
           extra_trees:
             n_estimators: 500
-            max_depth:
+            max_depth: 12
             min_samples_split: 2
             random_state: 42
           gbr:
@@ -81,20 +81,20 @@ stages:
     outs:
     - path: models/exp_model.pkl
       hash: md5
-      md5: 860c70ebb332d84fd4f4e12ec872ba4f
-      size: 1369
+      md5: 55f4617bb756930a9e7ddd87857720b2
+      size: 161398
     - path: models/exp_model_meta.json
       hash: md5
-      md5: 26de18179cf28b5dde5b5dc16570edc8
-      size: 563
+      md5: 481ae39af523df89e850f909ffeeb0eb
+      size: 610
     - path: reports/predictions.csv
       hash: md5
-      md5: b15312c2029d3d961678735f7ae28414
-      size: 28004
+      md5: 99e2d85429c6c27d3c7cd0fa6f81e063
+      size: 16466
     - path: reports/train_eval_metrics.json
       hash: md5
-      md5: 1e3518cdc046f89d087e0b7e838d6539
-      size: 445
+      md5: 877365d22b5762ebe2d0d702cb600af5
+      size: 385
   test:
     cmd: ./.venv/bin/python scripts/test_trained_model.py --params params.yaml
     deps:
@@ -104,16 +104,16 @@ stages:
       size: 11850
     - path: models/exp_model.pkl
       hash: md5
-      md5: 860c70ebb332d84fd4f4e12ec872ba4f
-      size: 1369
+      md5: 55f4617bb756930a9e7ddd87857720b2
+      size: 161398
     - path: params.yaml
       hash: md5
-      md5: 8404021d30c351d826b2667ecc936d21
-      size: 1234
+      md5: db6b2bae4385fe8c8f6f3a3f2860611c
+      size: 1230
     - path: scripts/test_trained_model.py
       hash: md5
-      md5: ed04d894e1bee95f4343381296c76b18
-      size: 2750
+      md5: 272e7fd3fbd47b728d3d76e864db0559
+      size: 2756
     params:
       params.yaml:
         train:
@@ -130,12 +130,12 @@ stages:
             test_metrics: reports/test_metrics.json
             predictions: reports/predictions.csv
             test_predictions: reports/test_predictions.csv
-          model_type: ridge
-          standardize: true
+          model_type: knn
+          standardize: false
           linear:
             fit_intercept: true
           ridge:
-            alpha: 1.0
+            alpha: 10.0
           lasso:
             alpha: 0.1
           elasticnet:
@@ -147,16 +147,16 @@ stages:
             epsilon: 0.1
             gamma: scale
           knn:
-            n_neighbors: 7
+            n_neighbors: 15
             weights: distance
           rf:
             n_estimators: 300
-            max_depth:
+            max_depth: 8
             min_samples_split: 2
             random_state: 42
           extra_trees:
             n_estimators: 500
-            max_depth:
+            max_depth: 12
             min_samples_split: 2
             random_state: 42
           gbr:
@@ -172,9 +172,9 @@ stages:
     outs:
     - path: reports/test_metrics.json
       hash: md5
-      md5: d23cdbf092572c6ce6668ce4bfa3bdea
-      size: 152
+      md5: ce41b39a740e6e5d7fe598948ea7545d
+      size: 151
     - path: reports/test_predictions.csv
       hash: md5
-      md5: 2c795e492ed67ac8e742072dbfe49584
-      size: 4841
+      md5: 5b19ea0c0e72e94e53530a47828dd73f
+      size: 4451
