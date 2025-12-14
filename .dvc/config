@@ -1,6 +1,7 @@
 [core]
-    no_scm = True
     remote = gcs-data
+    no_scm = False
+    site_cache_dir = .dvc/site-cache
 
 [remote "local-data"]
     url = .dvc/storage

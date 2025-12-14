@@ -1,0 +1,72 @@
+split:
+  seed: 42
+  test_size: 0.15
+  eval_size: 0.15
+
+train:
+  seed: 42
+  target_col: quality
+  id_col: Id
+
+  paths:
+    train: data/splits/train.csv
+    eval: data/splits/eval.csv
+    test: data/splits/test.csv
+    model: models/exp_model.pkl
+    meta: models/exp_model_meta.json
+    train_eval_metrics: reports/train_eval_metrics.json
+    test_metrics: reports/test_metrics.json
+    predictions: reports/predictions.csv
+    test_predictions: reports/test_predictions.csv
+
+  # One of:
+  # - linear, ridge, lasso, elasticnet, svr, knn, rf, extra_trees, gbr, hgb
+  model_type: gbr
+  standardize: false
+
+  linear:
+    fit_intercept: true
+
+  ridge:
+    alpha: 10.0
+
+  lasso:
+    alpha: 0.01
+
+  elasticnet:
+    alpha: 0.01
+    l1_ratio: 0.2
+
+  svr:
+    kernel: rbf
+    c: 10.0
+    epsilon: 0.1
+    gamma: scale
+
+  knn:
+    n_neighbors: 15
+    weights: distance
+
+  rf:
+    n_estimators: 1500
+    max_depth: 20
+    min_samples_split: 2
+    random_state: 42
+
+  extra_trees:
+    n_estimators: 1500
+    max_depth: 7
+    min_samples_split: 2
+    random_state: 42
+
+  gbr:
+    n_estimators: 3000
+    learning_rate: 0.05
+    max_depth: 3
+    random_state: 42
+
+  hgb:
+    max_iter: 400
+    learning_rate: 0.05
+    max_depth: 6
+    random_state: 42
