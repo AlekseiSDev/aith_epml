@@ -13,16 +13,16 @@ stages:
       size: 54653
     - path: params.yaml
       hash: md5
-      md5: 8404021d30c351d826b2667ecc936d21
-      size: 1234
+      md5: 1efcfb51761a71c1a1efb5afeee7279a
+      size: 1224
     - path: scripts/train_model.py
       hash: md5
-      md5: 0829aa555e9acab60e906f005b4467e6
-      size: 6961
+      md5: dd7e46b75fcbe6dae91e0e663f2bef83
+      size: 6975
     - path: src/wine_quality_epml/experiments/tracking.py
       hash: md5
-      md5: e01744b3c6d47c4558bd88d775b29fd8
-      size: 2041
+      md5: 706ca80f6dd3d9cf52218abc1ea57806
+      size: 2076
     params:
       params.yaml:
         train:
@@ -44,7 +44,7 @@ stages:
           linear:
             fit_intercept: true
           ridge:
-            alpha: 1.0
+            alpha: 0.1
           lasso:
             alpha: 0.1
           elasticnet:
@@ -81,20 +81,20 @@ stages:
     outs:
     - path: models/exp_model.pkl
       hash: md5
-      md5: 860c70ebb332d84fd4f4e12ec872ba4f
+      md5: 976b427ea0426b3310d10308b2ffaf3e
       size: 1369
     - path: models/exp_model_meta.json
       hash: md5
-      md5: 26de18179cf28b5dde5b5dc16570edc8
+      md5: 266dfd2062ebc3290d32c86f2469aa9a
       size: 563
     - path: reports/predictions.csv
       hash: md5
-      md5: b15312c2029d3d961678735f7ae28414
-      size: 28004
+      md5: 941672514c3aed9be8c26aefb595632d
+      size: 28005
     - path: reports/train_eval_metrics.json
       hash: md5
-      md5: 1e3518cdc046f89d087e0b7e838d6539
-      size: 445
+      md5: a97be5d200f1bbb0c64f84870d3a2029
+      size: 446
   test:
     cmd: ./.venv/bin/python scripts/test_trained_model.py --params params.yaml
     deps:
@@ -104,16 +104,16 @@ stages:
       size: 11850
     - path: models/exp_model.pkl
       hash: md5
-      md5: 860c70ebb332d84fd4f4e12ec872ba4f
+      md5: 976b427ea0426b3310d10308b2ffaf3e
       size: 1369
     - path: params.yaml
       hash: md5
-      md5: 8404021d30c351d826b2667ecc936d21
-      size: 1234
+      md5: 1efcfb51761a71c1a1efb5afeee7279a
+      size: 1224
     - path: scripts/test_trained_model.py
       hash: md5
-      md5: ed04d894e1bee95f4343381296c76b18
-      size: 2750
+      md5: 272e7fd3fbd47b728d3d76e864db0559
+      size: 2756
     params:
       params.yaml:
         train:
@@ -135,7 +135,7 @@ stages:
           linear:
             fit_intercept: true
           ridge:
-            alpha: 1.0
+            alpha: 0.1
           lasso:
             alpha: 0.1
           elasticnet:
@@ -172,9 +172,9 @@ stages:
     outs:
     - path: reports/test_metrics.json
       hash: md5
-      md5: d23cdbf092572c6ce6668ce4bfa3bdea
-      size: 152
+      md5: d8285a832a764e83d20acfe104bc535a
+      size: 150
     - path: reports/test_predictions.csv
       hash: md5
-      md5: 2c795e492ed67ac8e742072dbfe49584
-      size: 4841
+      md5: 3fb1343c2e5662060038daa2222c7d27
+      size: 4822
