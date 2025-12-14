@@ -13,16 +13,16 @@ stages:
       size: 54653
     - path: params.yaml
       hash: md5
-      md5: 8404021d30c351d826b2667ecc936d21
-      size: 1234
+      md5: 07d3080dd1636481ffe8853eb12ca797
+      size: 1224
     - path: scripts/train_model.py
       hash: md5
-      md5: 0829aa555e9acab60e906f005b4467e6
-      size: 6961
+      md5: dd7e46b75fcbe6dae91e0e663f2bef83
+      size: 6975
     - path: src/wine_quality_epml/experiments/tracking.py
       hash: md5
-      md5: e01744b3c6d47c4558bd88d775b29fd8
-      size: 2041
+      md5: 706ca80f6dd3d9cf52218abc1ea57806
+      size: 2076
     params:
       params.yaml:
         train:
@@ -93,8 +93,8 @@ stages:
       size: 28004
     - path: reports/train_eval_metrics.json
       hash: md5
-      md5: 1e3518cdc046f89d087e0b7e838d6539
-      size: 445
+      md5: 3cd8176567db04f943676268278e078a
+      size: 446
   test:
     cmd: ./.venv/bin/python scripts/test_trained_model.py --params params.yaml
     deps:
@@ -108,12 +108,12 @@ stages:
       size: 1369
     - path: params.yaml
       hash: md5
-      md5: 8404021d30c351d826b2667ecc936d21
-      size: 1234
+      md5: 07d3080dd1636481ffe8853eb12ca797
+      size: 1224
     - path: scripts/test_trained_model.py
       hash: md5
-      md5: ed04d894e1bee95f4343381296c76b18
-      size: 2750
+      md5: 272e7fd3fbd47b728d3d76e864db0559
+      size: 2756
     params:
       params.yaml:
         train:
