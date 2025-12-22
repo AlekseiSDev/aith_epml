@@ -1,0 +1,31 @@
+# Random Forest Configuration
+# RF model for quick experimentation
+
+split:
+  seed: 42
+  test_size: 0.15
+  eval_size: 0.15
+
+train:
+  seed: 42
+  target_col: quality
+  id_col: Id
+  model_type: rf
+  standardize: false
+
+  paths:
+    train: data/splits/train.csv
+    eval: data/splits/eval.csv
+    test: data/splits/test.csv
+    model: models/exp_model.pkl
+    meta: models/exp_model_meta.json
+    train_eval_metrics: reports/train_eval_metrics.json
+    test_metrics: reports/test_metrics.json
+    predictions: reports/predictions.csv
+    test_predictions: reports/test_predictions.csv
+
+  rf:
+    n_estimators: 500
+    max_depth: 10
+    min_samples_split: 5
+    random_state: 42

@@ -12,6 +12,7 @@ dependencies = [
     "scikit-learn>=1.4.0",
     "luigi>=3.5.0",
     "ruamel.yaml>=0.18.0",
+    "pydantic>=2.0.0",
 ]
 
 [project.optional-dependencies]

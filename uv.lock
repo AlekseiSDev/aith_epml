@@ -3281,6 +3281,7 @@ source = { editable = "." }
 dependencies = [
     { name = "dvc", extra = ["gs"] },
     { name = "luigi" },
+    { name = "pydantic" },
     { name = "ruamel-yaml" },
     { name = "scikit-learn" },
 ]
@@ -3305,6 +3306,7 @@ requires-dist = [
     { name = "luigi", specifier = ">=3.5.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = "==1.10.0" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = "==3.6.2" },
+    { name = "pydantic", specifier = ">=2.0.0" },
     { name = "ruamel-yaml", specifier = ">=0.18.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = "==0.4.10" },
     { name = "scikit-learn", specifier = ">=1.4.0" },
