@@ -1,0 +1,28 @@
+# Ridge Baseline Configuration
+# Simple ridge regression with moderate regularization
+
+split:
+  seed: 42
+  test_size: 0.15
+  eval_size: 0.15
+
+train:
+  seed: 42
+  target_col: quality
+  id_col: Id
+  model_type: ridge
+  standardize: true
+
+  paths:
+    train: data/splits/train.csv
+    eval: data/splits/eval.csv
+    test: data/splits/test.csv
+    model: models/exp_model.pkl
+    meta: models/exp_model_meta.json
+    train_eval_metrics: reports/train_eval_metrics.json
+    test_metrics: reports/test_metrics.json
+    predictions: reports/predictions.csv
+    test_predictions: reports/test_predictions.csv
+
+  ridge:
+    alpha: 10.0
