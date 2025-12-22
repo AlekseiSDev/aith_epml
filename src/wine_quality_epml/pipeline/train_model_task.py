@@ -1,14 +1,14 @@
-"""Luigi task for training ML model."""
+"""Luigi task for training ML model with Pydantic configuration."""
 
 from __future__ import annotations
 
 import json
+import logging
 from pathlib import Path
 from typing import Any
 
 import joblib
 import luigi
-from ruamel.yaml import YAML
 from sklearn.ensemble import (
     ExtraTreesRegressor,
     GradientBoostingRegressor,
@@ -22,88 +22,102 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
 
+from wine_quality_epml.config.loader import load_config
+from wine_quality_epml.config.schemas import ProjectConfig
 from wine_quality_epml.experiments.tracking import Timer, timer, write_csv, write_json
 from wine_quality_epml.pipeline.split_data_task import SplitDataTask
 
+logger = logging.getLogger(__name__)
+
 
 class TrainModelTask(luigi.Task):
-    """Train a sklearn model based on params.yaml configuration."""
+    """Train sklearn model using validated Pydantic configuration."""
 
     params_path = luigi.Parameter(default="params.yaml")
 
     def requires(self) -> SplitDataTask:
-        """Зависит от разделения данных."""
-        params = self._load_params()
-        split_cfg = params.get("split", {})
-        return SplitDataTask(
-            seed=split_cfg.get("seed", 42),
-            test_size=split_cfg.get("test_size", 0.15),
-            eval_size=split_cfg.get("eval_size", 0.15),
-        )
+        """Depends on data splitting."""
+        return SplitDataTask(params_path=self.params_path)
 
     def output(self) -> dict[str, luigi.LocalTarget]:
-        """Определяет выходные файлы задачи."""
-        params = self._load_params()
-        paths = params["train"]["paths"]
+        """Defines output files."""
+        config = self._load_config()
+        paths = config.train.paths
         return {
-            "model": luigi.LocalTarget(paths["model"]),
-            "meta": luigi.LocalTarget(paths["meta"]),
-            "metrics": luigi.LocalTarget(paths["train_eval_metrics"]),
-            "predictions": luigi.LocalTarget(paths["predictions"]),
+            "model": luigi.LocalTarget(paths.model),
+            "meta": luigi.LocalTarget(paths.meta),
+            "metrics": luigi.LocalTarget(paths.train_eval_metrics),
+            "predictions": luigi.LocalTarget(paths.predictions),
         }
 
     def run(self) -> None:
-        """Выполняет обучение модели."""
-        params = self._load_params()
-        train_cfg = params["train"]
-        paths = train_cfg["paths"]
-        target_col = str(train_cfg.get("target_col", "quality"))
-        id_col = str(train_cfg.get("id_col", "Id"))
+        """Executes model training with validated config."""
+        config = self._load_config()
+        train_cfg = config.train
+        paths = train_cfg.paths
 
-        # Загружаем данные
-        train_path = Path(paths["train"])
-        eval_path = Path(paths["eval"])
+        logger.info(f"Training {train_cfg.model_type} model")
+        logger.info(f"Seed: {train_cfg.seed}, Standardize: {train_cfg.standardize}")
+
+        # Load data
+        train_path = Path(paths.train)
+        eval_path = Path(paths.eval)
         x_train, y_train, feature_names = self._load_csv_dataset(
-            train_path, target_col=target_col, id_col=id_col
+            train_path, target_col=train_cfg.target_col, id_col=train_cfg.id_col
         )
-        x_eval, y_eval, _ = self._load_csv_dataset(eval_path, target_col=target_col, id_col=id_col)
+        x_eval, y_eval, _ = self._load_csv_dataset(
+            eval_path, target_col=train_cfg.target_col, id_col=train_cfg.id_col
+        )
 
-        # Строим модель
-        model_type, estimator = self._build_estimator(train_cfg)
-        standardize = (
-            bool(train_cfg.get("standardize", False)) and model_type not in self._tree_model_types()
-        )
+        logger.info(f"Train size: {len(y_train)}, Eval size: {len(y_eval)}")
+
+        # Build model using Pydantic validated config
+        model_type = train_cfg.model_type
+        estimator = self._build_estimator(config)
+        standardize = train_cfg.standardize and model_type not in {
+            "rf",
+            "extra_trees",
+            "gbr",
+            "hgb",
+        }
 
         if standardize:
+            logger.info("Building pipeline with StandardScaler")
             model: Any = Pipeline([("scaler", StandardScaler()), ("model", estimator)])
         else:
             model = estimator
 
-        # Обучаем модель
+        # Train model
+        logger.info("Starting model training...")
         with timer() as fit_timer:
             model.fit(x_train, y_train)
+        logger.info(f"Training completed in {fit_timer.seconds:.2f}s")
 
-        # Делаем предсказания
+        # Make predictions
         train_pred = list(model.predict(x_train))
         eval_pred = list(model.predict(x_eval))
 
-        # Вычисляем метрики
+        # Compute metrics
         train_metrics = self._compute_metrics(
             y_true=y_train, y_pred=train_pred, split="train", fit_timer=fit_timer
         )
         eval_metrics = self._compute_metrics(y_true=y_eval, y_pred=eval_pred, split="eval")
 
-        # Сохраняем модель
+        logger.info(f"Train RMSE: {train_metrics['rmse']:.4f}, R²: {train_metrics['r2']:.4f}")
+        logger.info(f"Eval RMSE: {eval_metrics['rmse']:.4f}, R²: {eval_metrics['r2']:.4f}")
+
+        # Save model
         model_path = Path(self.output()["model"].path)
         model_path.parent.mkdir(parents=True, exist_ok=True)
         joblib.dump(model, model_path)
+        logger.info(f"Model saved to {model_path}")
 
-        # Сохраняем метаданные
+        # Save metadata
         meta = {
             "model_type": model_type,
             "standardize": standardize,
-            "target_col": target_col,
-            "id_col": id_col,
+            "target_col": train_cfg.target_col,
+            "id_col": train_cfg.id_col,
             "feature_names": feature_names,
             "train_path": str(train_path),
             "eval_path": str(eval_path),
@@ -111,7 +125,7 @@ class TrainModelTask(luigi.Task):
                 "estimator_class": estimator.__class__.__name__,
                 "estimator_module": estimator.__class__.__module__,
             },
-            "hyperparams": dict(train_cfg.get(model_type, {})),
+            "hyperparams": train_cfg.get_model_config().model_dump(),
         }
         meta_path = Path(self.output()["meta"].path)
         meta_path.parent.mkdir(parents=True, exist_ok=True)
@@ -119,7 +133,7 @@ class TrainModelTask(luigi.Task):
             json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
         )
 
-        # Сохраняем метрики
+        # Save metrics
         write_json(
             Path(self.output()["metrics"].path),
             {
@@ -130,7 +144,7 @@ class TrainModelTask(luigi.Task):
             },
         )
 
-        # Сохраняем предсказания
+        # Save predictions
         rows: list[list[Any]] = []
         for y_true, y_pred in zip(y_eval, eval_pred, strict=False):
             rows.append(["eval", y_true, y_pred])
@@ -142,18 +156,16 @@ class TrainModelTask(luigi.Task):
             rows=rows,
         )
 
-    def _load_params(self) -> dict[str, Any]:
-        """Loads parameters from YAML."""
-        yaml = YAML(typ="safe")
-        payload = yaml.load(Path(str(self.params_path)).read_text(encoding="utf-8"))
-        if not isinstance(payload, dict):
-            raise ValueError("params.yaml must contain a mapping at the root.")
-        return payload
+        logger.info("✓ Model training completed successfully")
+
+    def _load_config(self) -> ProjectConfig:
+        """Load and validate configuration using Pydantic."""
+        return load_config(str(self.params_path))
 
     def _load_csv_dataset(
         self, path: Path, *, target_col: str, id_col: str
     ) -> tuple[list[list[float]], list[float], list[str]]:
-        """Загружает датасет из CSV."""
+        """Load dataset from CSV."""
         import csv
 
         rows = list(csv.DictReader(path.open(encoding="utf-8")))
@@ -170,52 +182,36 @@ class TrainModelTask(luigi.Task):
             features.append([float(row[col]) for col in feature_cols])
         return features, target, feature_cols
 
-    def _tree_model_types(self) -> set[str]:
-        """Возвращает набор древовидных моделей."""
-        return {"rf", "extra_trees", "gbr", "hgb"}
-
-    def _build_estimator(self, train_cfg: dict[str, Any]) -> tuple[str, Any]:
-        """Создает estimator на основе конфигурации."""
-        model_type = str(train_cfg["model_type"])
+    def _build_estimator(self, config: ProjectConfig) -> Any:
+        """Build estimator from validated Pydantic config."""
+        model_type = config.train.model_type
+        model_cfg = config.train.get_model_config()
 
         if model_type == "linear":
-            cfg = train_cfg.get("linear", {})
-            return model_type, LinearRegression(**cfg)
+            return LinearRegression(**model_cfg.model_dump())
         if model_type == "ridge":
-            cfg = train_cfg.get("ridge", {})
-            return model_type, Ridge(**cfg)
+            return Ridge(**model_cfg.model_dump())
         if model_type == "lasso":
-            cfg = train_cfg.get("lasso", {})
-            return model_type, Lasso(**cfg)
+            return Lasso(**model_cfg.model_dump())
         if model_type == "elasticnet":
-            cfg = train_cfg.get("elasticnet", {})
-            return model_type, ElasticNet(**cfg)
+            return ElasticNet(**model_cfg.model_dump())
         if model_type == "svr":
-            cfg = train_cfg.get("svr", {})
-            normalized = {
-                "C": cfg.get("c", 1.0),
-                "epsilon": cfg.get("epsilon", 0.1),
-                "kernel": cfg.get("kernel", "rbf"),
-                "gamma": cfg.get("gamma", "scale"),
-            }
-            return model_type, SVR(**normalized)
+            # SVR uses 'c' (lowercase) in our config but sklearn expects 'C' (uppercase)
+            cfg_dict = model_cfg.model_dump()
+            cfg_dict["C"] = cfg_dict.pop("c")
+            return SVR(**cfg_dict)
         if model_type == "knn":
-            cfg = train_cfg.get("knn", {})
-            return model_type, KNeighborsRegressor(**cfg)
+            return KNeighborsRegressor(**model_cfg.model_dump())
         if model_type == "rf":
-            cfg = train_cfg.get("rf", {})
-            return model_type, RandomForestRegressor(**cfg)
+            return RandomForestRegressor(**model_cfg.model_dump())
         if model_type == "extra_trees":
-            cfg = train_cfg.get("extra_trees", {})
-            return model_type, ExtraTreesRegressor(**cfg)
+            return ExtraTreesRegressor(**model_cfg.model_dump())
         if model_type == "gbr":
-            cfg = train_cfg.get("gbr", {})
-            return model_type, GradientBoostingRegressor(**cfg)
+            return GradientBoostingRegressor(**model_cfg.model_dump())
         if model_type == "hgb":
-            cfg = train_cfg.get("hgb", {})
-            return model_type, HistGradientBoostingRegressor(**cfg)
+            return HistGradientBoostingRegressor(**model_cfg.model_dump())
 
-        raise ValueError(f"Unsupported train.model_type={model_type!r}")
+        raise ValueError(f"Unsupported model_type={model_type!r}")
 
     def _compute_metrics(
         self,
@@ -225,7 +221,7 @@ class TrainModelTask(luigi.Task):
         split: str,
         fit_timer: Timer | None = None,
     ) -> dict[str, Any]:
-        """Вычисляет метрики модели."""
+        """Compute model metrics."""
         mse = float(mean_squared_error(y_true, y_pred))
         return {
             "split": split,

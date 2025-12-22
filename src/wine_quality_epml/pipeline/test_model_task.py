@@ -2,56 +2,65 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Any
 
 import joblib
 import luigi
-from ruamel.yaml import YAML
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
+from wine_quality_epml.config.loader import load_config
+from wine_quality_epml.config.schemas import ProjectConfig
 from wine_quality_epml.experiments.tracking import write_csv, write_json
 from wine_quality_epml.pipeline.train_model_task import TrainModelTask
 
+logger = logging.getLogger(__name__)
+
 
 class TestModelTask(luigi.Task):
-    """Evaluate trained model on test split."""
+    """Evaluate trained model on test split with Pydantic validation."""
 
     params_path = luigi.Parameter(default="params.yaml")
 
     def requires(self) -> TrainModelTask:
-        """Зависит от обучения модели."""
+        """Depends on model training."""
         return TrainModelTask(params_path=self.params_path)
 
     def output(self) -> dict[str, luigi.LocalTarget]:
-        """Определяет выходные файлы задачи."""
-        params = self._load_params()
-        paths = params["train"]["paths"]
+        """Defines output files."""
+        config = self._load_config()
+        paths = config.train.paths
         return {
-            "metrics": luigi.LocalTarget(paths["test_metrics"]),
-            "predictions": luigi.LocalTarget(paths["test_predictions"]),
+            "metrics": luigi.LocalTarget(paths.test_metrics),
+            "predictions": luigi.LocalTarget(paths.test_predictions),
         }
 
     def run(self) -> None:
-        """Выполняет тестирование модели."""
-        params = self._load_params()
-        train_cfg = params["train"]
-        paths = train_cfg["paths"]
-        target_col = str(train_cfg.get("target_col", "quality"))
-        id_col = str(train_cfg.get("id_col", "Id"))
+        """Executes model testing with validated config."""
+        config = self._load_config()
+        train_cfg = config.train
+        paths = train_cfg.paths
 
-        # Загружаем модель
-        model_path = Path(paths["model"])
+        logger.info("Testing model on test split")
+
+        # Load model
+        model_path = Path(paths.model)
+        logger.info(f"Loading model from {model_path}")
         model = joblib.load(model_path)
 
-        # Загружаем тестовые данные
-        test_path = Path(paths["test"])
-        x_test, y_test = self._load_csv_dataset(test_path, target_col=target_col, id_col=id_col)
+        # Load test data
+        test_path = Path(paths.test)
+        x_test, y_test = self._load_csv_dataset(
+            test_path, target_col=train_cfg.target_col, id_col=train_cfg.id_col
+        )
 
-        # Делаем предсказания
+        logger.info(f"Test size: {len(y_test)}")
+
+        # Make predictions
         y_pred = list(model.predict(x_test))
 
-        # Вычисляем метрики
+        # Compute metrics
         mse = float(mean_squared_error(y_test, y_pred))
         metrics = {
             "split": "test",
@@ -62,10 +71,12 @@ class TestModelTask(luigi.Task):
             "r2": float(r2_score(y_test, y_pred)),
         }
 
-        # Сохраняем метрики
+        logger.info(f"Test RMSE: {metrics['rmse']:.4f}, R²: {metrics['r2']:.4f}")
+
+        # Save metrics
         write_json(Path(self.output()["metrics"].path), metrics)
 
-        # Сохраняем предсказания
+        # Save predictions
         rows: list[list[Any]] = []
         for y_true, y_hat in zip(y_test, y_pred, strict=False):
             rows.append(["test", y_true, y_hat])
@@ -75,18 +86,20 @@ class TestModelTask(luigi.Task):
             rows=rows,
         )
 
-    def _load_params(self) -> dict[str, Any]:
-        """Loads parameters from YAML."""
-        yaml = YAML(typ="safe")
-        payload = yaml.load(Path(str(self.params_path)).read_text(encoding="utf-8"))
-        if not isinstance(payload, dict):
-            raise ValueError("params.yaml must contain a mapping at the root.")
-        return payload
+        logger.info("✓ Model testing completed successfully")
+        logger.info(
+            f"Pipeline summary: Model={config.train.model_type}, "
+            f"Test RMSE={metrics['rmse']:.4f}, R²={metrics['r2']:.4f}"
+        )
+
+    def _load_config(self) -> ProjectConfig:
+        """Load and validate configuration using Pydantic."""
+        return load_config(str(self.params_path))
 
     def _load_csv_dataset(
         self, path: Path, *, target_col: str, id_col: str
     ) -> tuple[list[list[float]], list[float]]:
-        """Загружает датасет из CSV."""
+        """Load dataset from CSV."""
         import csv
 
         rows = list(csv.DictReader(path.open(encoding="utf-8")))
