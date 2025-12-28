@@ -27,7 +27,8 @@ nav:
     - HW2: hw2_report_models_and_data_vcs.md
     - HW3: hw3_report_exps_tracking.md
     - HW4: hw4_report_pipeline_automatization.md
-    - HW6 (Current): hw6_autodocs.md
+    - HW5: hw_5/hw5_report_clearml.md
+    - HW6: hw_6_autodocs/hw6_autodocs_report.md
   - Experiments: hw_6_autodocs/experiments.md
   - Reproduction: hw_6_autodocs/reproduction.md
   - API Reference:
