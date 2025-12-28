@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../hw_5/hw5_report_clearml/">
+        <link rel="prev" href="../pydantic_guide/">
       
       
-        <link rel="next" href="../experiments/">
+        <link rel="next" href="../models_and_data_vcs/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>HW6 - Wine Quality EPML</title>
+        <title>Luigi Pipeline - Wine Quality EPML</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hw6-docs-as-code" class="md-skip">
+        <a href="#luigi-pipeline-wine-quality-epml" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HW6
+              Luigi Pipeline
             
           </span>
         </div>
@@ -198,11 +198,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../pydantic_guide/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../pydantic_guide/" class="md-tabs__link">
           
   
   
@@ -218,13 +220,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../hw1_report/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../hw_1/hw1_report/" class="md-tabs__link">
           
   
   
@@ -242,7 +242,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../experiments/" class="md-tabs__link">
+      <a href="../../hw_6/experiments/" class="md-tabs__link">
         
   
   
@@ -261,7 +261,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../reproduction/" class="md-tabs__link">
+      <a href="../../hw_6/reproduction/" class="md-tabs__link">
         
   
   
@@ -360,26 +360,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -397,7 +402,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -415,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pydantic_guide/" class="md-nav__link">
+      <a href="../pydantic_guide/" class="md-nav__link">
         
   
   
@@ -440,10 +445,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../luigi_pipeline_usage/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luigi Pipeline
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -451,6 +483,170 @@
     
   
     Luigi Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Установка зависимостей
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Структура пайплайна
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запуск
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Запуск">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Базовый запуск (полный пайплайн)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запуск с параметрами
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запуск отдельной задачи
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Кэширование
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Конфигурация
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#luigi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Настройки Luigi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Визуализация (опционально)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../models_and_data_vcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Models and Data VCS
   
 
     
@@ -475,31 +671,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -517,7 +708,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -535,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hw1_report/" class="md-nav__link">
+      <a href="../../hw_1/hw1_report/" class="md-nav__link">
         
   
   
@@ -563,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hw2_report_models_and_data_vcs/" class="md-nav__link">
+      <a href="../../hw_2/hw2_report_models_and_data_vcs/" class="md-nav__link">
         
   
   
@@ -591,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hw3_report_exps_tracking/" class="md-nav__link">
+      <a href="../../hw_3/hw3_report_exps_tracking/" class="md-nav__link">
         
   
   
@@ -619,7 +810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hw4_report_pipeline_automatization/" class="md-nav__link">
+      <a href="../../hw_4/hw4_report_pipeline_automatization/" class="md-nav__link">
         
   
   
@@ -672,37 +863,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HW6
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../hw_6/hw6_autodocs_report/" class="md-nav__link">
         
   
   
@@ -718,81 +882,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-mkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Выбор и настройка MkDocs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-api-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Автоматизация API Reference
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-github-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Публикация в GitHub Pages
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Отчеты и воспроизводимость
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Скриншоты
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -812,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../experiments/" class="md-nav__link">
+      <a href="../../hw_6/experiments/" class="md-nav__link">
         
   
   
@@ -839,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reproduction/" class="md-nav__link">
+      <a href="../../hw_6/reproduction/" class="md-nav__link">
         
   
   
@@ -991,37 +1080,71 @@
 
 
 
-<h1 id="hw6-docs-as-code">HW6 — отчет по автоматизации документации (Docs-as-Code)</h1>
-<p>В рамках данной работы была внедрена система автоматической генерации и публикации документации проекта с использованием MkDocs и GitHub Actions.</p>
-<h2 id="1-mkdocs">1. Выбор и настройка MkDocs</h2>
-<p>Для создания технической документации был выбран <strong>MkDocs</strong> с темой <strong>Material</strong>.</p>
-<p><strong>Преимущества:</strong>
-- Полная поддержка Markdown.
-- Быстрая сборка и современный UI.
-- Плагин <code>mkdocstrings</code> для автоматического извлечения документации из Python docstrings.</p>
-<p><strong>Процесс:</strong>
-1. Добавлены зависимости в <code>pyproject.toml</code>: <code>mkdocs</code>, <code>mkdocs-material</code>, <code>mkdocstrings[python]</code>.
-2. Создан файл конфигурации <code>mkdocs.yml</code>.
-3. Настроена структура навигации, объединяющая отчеты по всем домашним заданиям и API Reference.</p>
-<h2 id="2-api-reference">2. Автоматизация API Reference</h2>
-<p>Для автоматической генерации документации из кода использован плагин <code>mkdocstrings</code>.
-- Созданы страницы в <code>docs/api/</code> (позже перенесены для удобства), которые динамически подтягивают описание модулей <code>config</code> и <code>pipeline</code>.
-- Это позволяет поддерживать документацию в актуальном состоянии без ручного обновления при изменении кода.</p>
-<h2 id="3-github-pages">3. Публикация в GitHub Pages</h2>
-<p>Настроен CI/CD пайплайн через GitHub Actions (<a href=".github/workflows/docs.yml">docs.yml</a>).</p>
-<p><strong>Сценарий:</strong>
-- Триггер: push в ветки <code>master</code> или <code>feature/hw6_autodocs</code>.
-- Сборка: установка зависимостей через <code>uv</code>.
-- Деплой: команда <code>mkdocs gh-deploy</code> автоматически собирает сайт и пушит его в ветку <code>gh-pages</code>.</p>
-<h2 id="4">4. Отчеты и воспроизводимость</h2>
+<h1 id="luigi-pipeline-wine-quality-epml">Luigi Pipeline для Wine Quality EPML</h1>
+<p>Автоматизированный ML пайплайн на основе Luigi для проекта wine_quality_epml.</p>
+<h2 id="_1">Установка зависимостей</h2>
+<pre><code class="language-bash">uv sync
+</code></pre>
+<h2 id="_2">Структура пайплайна</h2>
+<p>Пайплайн состоит из трех основных задач:</p>
+<ol>
+<li><strong>SplitDataTask</strong> - разделение данных на train/eval/test</li>
+<li><strong>TrainModelTask</strong> - обучение модели (зависит от SplitDataTask)</li>
+<li><strong>TestModelTask</strong> - тестирование модели (зависит от TrainModelTask)</li>
+</ol>
+<h2 id="_3">Запуск</h2>
+<h3 id="_4">Базовый запуск (полный пайплайн)</h3>
+<pre><code class="language-bash"># Через runner.py
+uv run python -m wine_quality_epml.pipeline.runner --local-scheduler
+
+# Напрямую через Luigi CLI
+luigi --module wine_quality_epml.pipeline.test_model_task TestModelTask --local-scheduler
+</code></pre>
+<h3 id="_5">Запуск с параметрами</h3>
+<pre><code class="language-bash"># С указанием пути к конфигурации
+uv run python -m wine_quality_epml.pipeline.runner --params params.yaml --local-scheduler
+
+# С параллельным выполнением (несколько workers)
+uv run python -m wine_quality_epml.pipeline.runner --workers 4 --local-scheduler
+</code></pre>
+<h3 id="_6">Запуск отдельной задачи</h3>
+<pre><code class="language-bash"># Только разделение данных
+luigi --module wine_quality_epml.pipeline.split_data_task SplitDataTask --local-scheduler
+
+# Только обучение (автоматически выполнит split, если нужно)
+luigi --module wine_quality_epml.pipeline.train_model_task TrainModelTask --local-scheduler
+</code></pre>
+<h2 id="_7">Кэширование</h2>
+<p>Luigi автоматически кэширует результаты выполнения задач. Если выходные файлы существуют, задача будет пропущена. Для принудительного перезапуска удалите соответствующие выходные файлы:</p>
+<pre><code class="language-bash"># Перезапустить обучение
+rm -f models/exp_model.pkl models/exp_model_meta.json
+
+# Перезапустить тестирование
+rm -f reports/test_metrics.json reports/test_predictions.json
+
+# Полный перезапуск
+rm -f models/exp_model.pkl reports/test_metrics.json
+</code></pre>
+<h2 id="_8">Конфигурация</h2>
+<p>Параметры пайплайна настраиваются в <code>params.yaml</code>:</p>
 <ul>
-<li><strong>Эксперименты:</strong> Создана сводная таблица результатов в <a href="../experiments/">experiments.md</a>. Отмечено, что основной трекинг ведется в ClearML.</li>
-<li><strong>Воспроизводимость:</strong> Написана подробная инструкция в <a href="../reproduction/">reproduction.md</a>, описывающая шаги от клонирования репозитория до запуска пайплайна.</li>
+<li><code>split.*</code> - параметры разделения данных</li>
+<li><code>train.model_type</code> - выбор алгоритма (ridge, lasso, gbr, rf, и т.д.)</li>
+<li><code>train.&lt;model_type&gt;</code> - гиперпараметры конкретной модели</li>
+<li><code>train.paths.*</code> - пути к выходным файлам</li>
 </ul>
-<h2 id="_1">Скриншоты</h2>
-<p><img alt="Главная страница документации" src="../hw6_1.jpg" />
-<img alt="Автоматически сгенерированный API Reference" src="../hw6_2.jpg" />
-<img alt="Процесс публикации через GitHub Actions" src="../hw6_3.jpg" /></p>
+<h2 id="luigi">Настройки Luigi</h2>
+<p>Глобальные настройки Luigi находятся в <code>luigi.cfg</code>:</p>
+<ul>
+<li>Порты для планировщика</li>
+<li>Таймауты и интервалы</li>
+<li>Коды возврата для различных сценариев</li>
+</ul>
+<h2 id="_9">Визуализация (опционально)</h2>
+<p>Для визуализации выполнения пайплайна можно запустить Luigi Central Scheduler:</p>
+<pre><code class="language-bash">luigid --port 8082
+</code></pre>
+<p>Затем запустить пайплайн без <code>--local-scheduler</code> и открыть http://localhost:8082 в браузере.</p>
 
 
 
