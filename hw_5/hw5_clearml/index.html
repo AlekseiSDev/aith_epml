@@ -14,19 +14,19 @@
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>DVC: данные и модели (GCS) - Wine Quality EPML</title>
+        <title>HW5 — отчет по ClearML (MLOps) - Wine Quality EPML</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -45,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dvc-gcs" class="md-skip">
+        <a href="#hw5-clearml-mlops" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +84,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Wine Quality EPML" class="md-header__button md-logo" aria-label="Wine Quality EPML" data-md-component="logo">
+    <a href="../.." title="Wine Quality EPML" class="md-header__button md-logo" aria-label="Wine Quality EPML" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DVC: данные и модели (GCS)
+              HW5 — отчет по ClearML (MLOps)
             
           </span>
         </div>
@@ -177,7 +177,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -198,7 +198,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pydantic_guide/" class="md-tabs__link">
+        <a href="../../pydantic_guide/" class="md-tabs__link">
           
   
   
@@ -218,7 +218,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../hw1_report/" class="md-tabs__link">
+        <a href="../../hw1_report/" class="md-tabs__link">
           
   
   
@@ -238,7 +238,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../api/config/" class="md-tabs__link">
+        <a href="../../api/config/" class="md-tabs__link">
           
   
   
@@ -274,7 +274,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Wine Quality EPML" class="md-nav__button md-logo" aria-label="Wine Quality EPML" data-md-component="logo">
+    <a href="../.." title="Wine Quality EPML" class="md-nav__button md-logo" aria-label="Wine Quality EPML" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -292,7 +292,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -371,7 +371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pydantic_guide/" class="md-nav__link">
+      <a href="../../pydantic_guide/" class="md-nav__link">
         
   
   
@@ -399,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../luigi_pipeline_usage/" class="md-nav__link">
+      <a href="../../luigi_pipeline_usage/" class="md-nav__link">
         
   
   
@@ -486,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hw1_report/" class="md-nav__link">
+      <a href="../../hw1_report/" class="md-nav__link">
         
   
   
@@ -514,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hw2_report_models_and_data_vcs/" class="md-nav__link">
+      <a href="../../hw2_report_models_and_data_vcs/" class="md-nav__link">
         
   
   
@@ -542,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hw3_report_exps_tracking/" class="md-nav__link">
+      <a href="../../hw3_report_exps_tracking/" class="md-nav__link">
         
   
   
@@ -570,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hw4_report_pipeline_automatization/" class="md-nav__link">
+      <a href="../../hw4_report_pipeline_automatization/" class="md-nav__link">
         
   
   
@@ -598,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hw6_autodocs/" class="md-nav__link">
+      <a href="../../hw6_autodocs/" class="md-nav__link">
         
   
   
@@ -685,7 +685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/config/" class="md-nav__link">
+      <a href="../../api/config/" class="md-nav__link">
         
   
   
@@ -713,7 +713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/pipeline/" class="md-nav__link">
+      <a href="../../api/pipeline/" class="md-nav__link">
         
   
   
@@ -758,97 +758,66 @@
 
 
 
-<h1 id="dvc-gcs">DVC: данные и модели (GCS)</h1>
-<p>Краткий гайд для участников: как подтянуть данные/модели и как обновлять их через DVC. Предполагается знание Git.</p>
-<h2 id="_1">Установка и авторизация</h2>
-<p>1) DVC: <code>brew install dvc</code>
-2) Google Cloud SDK: <code>brew install --cask google-cloud-sdk</code> и <code>source /usr/local/share/google-cloud-sdk/path.bash.inc</code>
-3) Авторизация (ADC):
-   <code>bash
-   CLOUDSDK_PYTHON=/usr/bin/python3 gcloud auth application-default login</code>
-   Альтернатива: сервисный аккаунт JSON (см. креды ниже).
-4) Из-за ограничений macOS указывайте локальный кеш для DVC:
-   <code>bash
-   export DVC_SITE_CACHE_DIR="$PWD/.dvc/site-cache"</code>
-5) Установить проектные зависимости (для sklearn): <code>uv sync</code> или <code>pip install -r requirements.txt</code> если используете pip-флоу.</p>
-<h2 id="_2">Забрать данные и модели</h2>
-<pre><code class="language-bash">export DVC_SITE_CACHE_DIR=&quot;$PWD/.dvc/site-cache&quot;
-dvc pull   # подтянет data/raw/WineQT.csv и артефакты моделей из gs://aith_epml
+<h1 id="hw5-clearml-mlops">HW5 — отчет по ClearML (MLOps)</h1>
+<p>Развернут локальный ClearML Server, настроен трекинг экспериментов, регистрация моделей и базовый pipeline. Эксперименты и пайплайн зафиксированы в UI, артефакты и метрики сохраняются автоматически.</p>
+<h2 id="1-clearml-server">1. Настройка ClearML Server</h2>
+<ul>
+<li>Использован официальный <code>docker-compose</code> ClearML Server, адаптирован под Docker Desktop (named volumes).</li>
+<li>Сервисы: ClearML apiserver/webserver/fileserver + MongoDB + Elasticsearch + Redis.</li>
+<li>Порты:</li>
+<li>Web UI: <code>http://localhost:8080</code></li>
+<li>API: <code>http://localhost:8008</code></li>
+<li>Fileserver: <code>http://localhost:8081</code></li>
+</ul>
+<p>Запуск:</p>
+<pre><code class="language-bash">docker compose -f configs/clearml_server.docker-compose.yml up -d
 </code></pre>
-<h2 id="raw-splits">Обновить данные (raw → splits)</h2>
-<p>1) Положить новый raw-файл в <code>data/raw/</code> (например, заменить <code>WineQT.csv</code>).
-2) Добавить в DVC и запушить:
-   <code>bash
-   dvc add data/raw/WineQT.csv
-   dvc push              # по умолчанию в gs://aith_epml</code>
-3) В Git коммитим только <code>.dvc</code> и конфиги, не сами данные.</p>
-<h2 id="trainevaltest">Сделать train/eval/test сплиты</h2>
-<pre><code class="language-bash">export DVC_SITE_CACHE_DIR=&quot;$PWD/.dvc/site-cache&quot;
-python scripts/split_data.py --test-size 0.15 --eval-size 0.15 --seed 42
-dvc add data/splits/train.csv data/splits/eval.csv data/splits/test.csv
-   dvc push
-   git add data/splits/*.dvc
-   git commit -m &quot;Add data splits&quot;
-   ```
-По умолчанию сплиты кладутся в `data/splits/` (train/eval/test), seed=42.
-
-## Обучить и зафиксировать модель (baseline)
-- Скрипт: `python scripts/train_baseline.py --model-type {constant|linear} [--strategy mean|median] [--tag name]`
-- Артефакты:
-  - модель (параметры/веса): `models/&lt;tag&gt;_model.json`
-  - метрики тренировки: `models/&lt;tag&gt;_metrics.json`
-  где `&lt;tag&gt;` = model-type или переданный `--tag`.
- - Данные по умолчанию: `data/splits/train.csv`, в метриках логируется `split` и `data_path`.
-
-Пример (две версии):
-```bash
-export DVC_SITE_CACHE_DIR=&quot;$PWD/.dvc/site-cache&quot;
-python scripts/train_baseline.py --model-type constant --strategy mean --tag const_mean_v1
-python scripts/train_baseline.py --model-type linear --tag linear_v1
-# Зафиксировать в DVC:
-dvc add models/const_mean_v1_model.json models/const_mean_v1_metrics.json
-  dvc add models/linear_v1_model.json models/linear_v1_metrics.json
-  dvc push   # в gs://aith_epml
-  git add models/*.dvc .dvc/config .dvcignore
-  git commit -m &quot;Add baseline models (mean/median)&quot;
+<p>Проверка API:</p>
+<pre><code class="language-bash">curl http://localhost:8008/debug.ping
 </code></pre>
-<p>Метрики можно сравнивать между ревизиями Git через <code>dvc metrics diff --targets models/&lt;tag&gt;_metrics.json &lt;rev&gt;</code>.</p>
-<h2 id="_3">Оценка сохранённой модели</h2>
-<ul>
-<li>Скрипт: <code>python scripts/evaluate_model.py --model-path models/&lt;tag&gt;_model.json [--metrics-path out.json]</code></li>
-<li>По умолчанию берёт датасет <code>data/raw/WineQT.csv</code> (можно указать <code>--data-path data/splits/test.csv</code>) и пишет метрики в <code>models/&lt;tag&gt;_model_eval_metrics.json</code>, включая <code>split</code>/<code>data_path</code>.</li>
-<li>Результат можно добавить в DVC:
-  <code>bash
-  python scripts/evaluate_model.py --model-path models/linear_v1_model.json
-  dvc add models/linear_v1_model_eval_metrics.json
-  dvc push
-  git add models/*.dvc
-  git commit -m "Eval linear_v1"</code></li>
-</ul>
-<h2 id="_4">Сравнение версий</h2>
-<ul>
-<li>Меняйте <code>params.json</code> (например, strategy -&gt; median), делайте <code>dvc repro</code> и коммит, чтобы зафиксировать полную цепочку (данные → сплиты → модель → метрики) в одной ревизии.</li>
-<li>Сравнить метрики между ревизиями:
-  <code>bash
-  dvc metrics diff --targets models/metrics.json HEAD~1</code>
-  или по конкретным тегам/веткам Git.</li>
-</ul>
-<h2 id="_5">Быстрые принципы</h2>
-<ul>
-<li>Данные и модели версионируем одинаково через DVC (<code>dvc add/push</code>), храним только <code>.dvc</code> и конфиги в Git.</li>
-<li>Сплиты и модели завязываем на фиксированные seeds/параметры (<code>params.json</code>), чтобы <code>dvc repro</code> воспроизводил пайплайн end-to-end.</li>
-<li>Метрики и артефакты моделей лежат в <code>models/</code> и так же проходят через DVC; дифф метрик делаем <code>dvc metrics diff</code>.</li>
-</ul>
-<h2 id="remotes">Remotes и креды</h2>
-<ul>
-<li>Default remote: <code>gcs-data</code> → <code>gs://aith_epml</code> (см. <code>.dvc/config</code>); резерв <code>local-data</code> → <code>.dvc/storage</code>.</li>
-<li>Креды не коммитим:</li>
-<li>ADC (рекомендуется): <code>gcloud auth application-default login</code>.</li>
-<li>JSON ключ: сохранить локально (например, <code>~/.config/gcloud/aith-epml.json</code>), подключить:
-    <code>bash
-    dvc remote modify gcs-data credentialpath ~/.config/gcloud/aith-epml.json --local</code>
-    <code>.dvc/config.local</code> уже в gitignore.</li>
-</ul>
+<p>Аутентификация:
+- UI логин: <code>admin</code> / <code>clearml</code>.
+- Сгенерированы API keys, локальная настройка через <code>clearml-init</code>.</p>
+<h2 id="2">2. Трекинг экспериментов</h2>
+<p>Скрипт: <code>scripts/clearml_experiment.py</code>.</p>
+<p>Что логируется:
+- параметры и конфиг: <code>task.connect(params)</code>
+- метрики: <code>mae</code>, <code>rmse</code>, <code>r2</code>, <code>fit_seconds</code>
+- артефакты: метрики, предсказания, метаданные модели
+- автологирование sklearn: <code>auto_connect_frameworks={"scikit": True}</code></p>
+<p>Пример запуска (2 эксперимента):</p>
+<pre><code class="language-bash">uv run python scripts/clearml_experiment.py --params configs/ridge_baseline.yaml --task-name ridge_baseline
+uv run python scripts/clearml_experiment.py --params configs/rf_experiment.yaml --task-name rf_experiment
+</code></pre>
+<p>Факт запуска:
+- <code>ridge_baseline</code> (task id <code>0e38fee3d9c74c34a3369ad2c8b84b1e</code>)
+- <code>rf_experiment</code> (task id <code>566d2e67317d4e3ca483eb03757c51a0</code>)</p>
+<p>Сравнение экспериментов:
+- UI → Project <code>wine_quality_epml</code> → Experiments → таблица с сортировкой по метрикам.</p>
+<h2 id="3">3. Управление моделями</h2>
+<p>Регистрация и версионирование делаются в <code>scripts/clearml_experiment.py</code>:
+- <code>OutputModel.update_weights(...)</code> — публикация артефакта модели
+- <code>OutputModel.set_metadata("meta", json)</code> — метаданные (тип модели, параметры, фичи)</p>
+<p>Версии формируются по <code>task_id</code>, сравнение — в Model Registry UI.</p>
+<h2 id="4-clearml-pipeline">4. ClearML Pipeline</h2>
+<p>Скрипт: <code>scripts/clearml_pipeline.py</code>.</p>
+<p>Pipeline шаги:
+1) split → <code>scripts/split_data.py</code>
+2) train → <code>scripts/train_model.py</code>
+3) test → <code>scripts/test_trained_model.py</code></p>
+<p>Запуск:</p>
+<pre><code class="language-bash">uv run python scripts/clearml_pipeline.py --params params.yaml
+</code></pre>
+<p>Факт запуска:
+- Pipeline task id: <code>06c4e546657848818e8dbf08b0d4a591</code></p>
+<p>Мониторинг:
+- UI → Project <code>wine_quality_epml</code> → Pipelines (граф и статусы шагов).</p>
+<p>Уведомления:
+- UI → Settings → Notifications (по статусам задач).</p>
+<h2 id="_1">Скриншоты</h2>
+<p><img alt="ClearML Server UI и доступ к проекту" src="../hw5_1.jpg" />
+<img alt="Список экспериментов и метрики" src="../hw5_2.jpg" />
+<img alt="Pipeline в UI" src="../hw5_3.jpg" /></p>
 
 
 
@@ -898,10 +867,10 @@ dvc add models/const_mean_v1_model.json models/const_mean_v1_metrics.json
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "header.autohide"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

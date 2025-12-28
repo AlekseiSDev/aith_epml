@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../hw4_report_pipeline_automatization/">
+      
+      
+        <link rel="next" href="../api/config/">
       
       
         
@@ -19,7 +23,7 @@
     
     
       
-        <title>DVC: данные и модели (GCS) - Wine Quality EPML</title>
+        <title>HW6 (Current) - Wine Quality EPML</title>
       
     
     
@@ -70,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dvc-gcs" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DVC: данные и модели (GCS)
+              HW6 (Current)
             
           </span>
         </div>
@@ -214,10 +218,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../hw1_report/" class="md-tabs__link">
           
   
@@ -431,26 +437,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -468,7 +479,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -595,10 +606,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../hw6_autodocs/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW6 (Current)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -614,6 +652,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Критерии оценки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ход работы
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ход работы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Выбор инструмента
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Подключение и настройка
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Локальный запуск
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Публикация в GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -758,97 +888,83 @@
 
 
 
-<h1 id="dvc-gcs">DVC: данные и модели (GCS)</h1>
-<p>Краткий гайд для участников: как подтянуть данные/модели и как обновлять их через DVC. Предполагается знание Git.</p>
-<h2 id="_1">Установка и авторизация</h2>
-<p>1) DVC: <code>brew install dvc</code>
-2) Google Cloud SDK: <code>brew install --cask google-cloud-sdk</code> и <code>source /usr/local/share/google-cloud-sdk/path.bash.inc</code>
-3) Авторизация (ADC):
+<h1 id="_1">Требования</h1>
+<ol>
+<li><strong>Техническая документация (2 балла):</strong><ul>
+<li>Создать документацию с помощью Sphinx или MkDocs</li>
+<li>Создать руководство по развертыванию</li>
+<li>Настроить автоматическую генерацию документации</li>
+<li>Создать примеры использования</li>
+</ul>
+</li>
+<li><strong>Публикация в Git Pages (3 балла):</strong><ul>
+<li>Настроить GitHub Actions для автоматической публикации</li>
+<li>Создать сайт с документацией на Git Pages</li>
+<li>Настроить автоматическое обновление при изменениях</li>
+</ul>
+</li>
+<li><strong>Отчеты об экспериментах (2 балла):</strong><ul>
+<li>Создать отчеты об экспериментах в формате Markdown</li>
+<li>Добавить графики и визуализации результатов</li>
+<li>Создать сравнительные таблицы экспериментов</li>
+<li>Настроить автоматическую генерацию отчетов</li>
+</ul>
+</li>
+<li><strong>Воспроизводимость (1 балл):</strong><ul>
+<li>Создать инструкции по воспроизведению</li>
+<li>Создать README с полным описанием</li>
+<li>Настроить автоматическую сборку документации</li>
+</ul>
+</li>
+</ol>
+<h2 id="_2">Критерии оценки</h2>
+<ul>
+<li><strong>Отлично (8 баллов):</strong> Полная документация, качественные отчеты</li>
+<li><strong>Хорошо (6-7 баллов):</strong> Хорошая документация, базовые отчеты</li>
+<li><strong>Удовлетворительно (4-5 баллов):</strong> Базовая документация</li>
+<li><strong>Неудовлетворительно (0-3 балла):</strong> Требования не выполнены</li>
+</ul>
+<h2 id="_3">Ход работы</h2>
+<h3 id="1">1. Выбор инструмента</h3>
+<p>Для создания технической документации был выбран <strong>MkDocs</strong>.</p>
+<p><strong>Причины выбора:</strong>
+- <strong>Markdown-native:</strong> Проект уже содержит множество отчетов в формате Markdown, которые MkDocs поддерживает "из коробки".
+- <strong>Простота настройки:</strong> Конфигурация осуществляется через один YAML-файл.
+- <strong>Современный интерфейс:</strong> Использование темы <code>material</code> обеспечивает отличный UX и адаптивность.
+- <strong>Docs-as-Code:</strong> Идеально вписывается в CI/CD процессы и философию хранения документации рядом с кодом.
+- <strong>Экосистема:</strong> Наличие плагина <code>mkdocstrings</code> позволяет легко генерировать документацию из Python docstrings.</p>
+<h3 id="2">2. Подключение и настройка</h3>
+<p><strong>Процесс установки:</strong>
+1. В <code>pyproject.toml</code> были добавлены зависимости в секцию <code>dev</code>:
+   - <code>mkdocs</code>: основной движок.
+   - <code>mkdocs-material</code>: современная тема оформления.
+   - <code>mkdocstrings[python]</code>: плагин для автоматической генерации API-документации из кода.
+2. Установка выполнена через <code>uv</code>:
    <code>bash
-   CLOUDSDK_PYTHON=/usr/bin/python3 gcloud auth application-default login</code>
-   Альтернатива: сервисный аккаунт JSON (см. креды ниже).
-4) Из-за ограничений macOS указывайте локальный кеш для DVC:
-   <code>bash
-   export DVC_SITE_CACHE_DIR="$PWD/.dvc/site-cache"</code>
-5) Установить проектные зависимости (для sklearn): <code>uv sync</code> или <code>pip install -r requirements.txt</code> если используете pip-флоу.</p>
-<h2 id="_2">Забрать данные и модели</h2>
-<pre><code class="language-bash">export DVC_SITE_CACHE_DIR=&quot;$PWD/.dvc/site-cache&quot;
-dvc pull   # подтянет data/raw/WineQT.csv и артефакты моделей из gs://aith_epml
+   uv sync --extra dev</code></p>
+<p><strong>Конфигурация:</strong>
+Создан файл <code>mkdocs.yml</code> в корне проекта со следующими настройками:
+- Использование темы <code>material</code>.
+- Настройка плагина <code>mkdocstrings</code> для поиска исходного кода в папке <code>src</code>.
+- Определение структуры навигации (<code>nav</code>), включающей существующие отчеты и новые страницы API Reference.</p>
+<p><strong>Автоматизация API:</strong>
+Созданы файлы в <code>docs/api/</code>, использующие синтаксис <code>::: module.name</code> для автоматического извлечения документации из Python-модулей.</p>
+<h3 id="3">3. Локальный запуск</h3>
+<p>Для проверки документации локально используется команда:</p>
+<pre><code class="language-bash">uv run mkdocs serve
 </code></pre>
-<h2 id="raw-splits">Обновить данные (raw → splits)</h2>
-<p>1) Положить новый raw-файл в <code>data/raw/</code> (например, заменить <code>WineQT.csv</code>).
-2) Добавить в DVC и запушить:
-   <code>bash
-   dvc add data/raw/WineQT.csv
-   dvc push              # по умолчанию в gs://aith_epml</code>
-3) В Git коммитим только <code>.dvc</code> и конфиги, не сами данные.</p>
-<h2 id="trainevaltest">Сделать train/eval/test сплиты</h2>
-<pre><code class="language-bash">export DVC_SITE_CACHE_DIR=&quot;$PWD/.dvc/site-cache&quot;
-python scripts/split_data.py --test-size 0.15 --eval-size 0.15 --seed 42
-dvc add data/splits/train.csv data/splits/eval.csv data/splits/test.csv
-   dvc push
-   git add data/splits/*.dvc
-   git commit -m &quot;Add data splits&quot;
-   ```
-По умолчанию сплиты кладутся в `data/splits/` (train/eval/test), seed=42.
-
-## Обучить и зафиксировать модель (baseline)
-- Скрипт: `python scripts/train_baseline.py --model-type {constant|linear} [--strategy mean|median] [--tag name]`
-- Артефакты:
-  - модель (параметры/веса): `models/&lt;tag&gt;_model.json`
-  - метрики тренировки: `models/&lt;tag&gt;_metrics.json`
-  где `&lt;tag&gt;` = model-type или переданный `--tag`.
- - Данные по умолчанию: `data/splits/train.csv`, в метриках логируется `split` и `data_path`.
-
-Пример (две версии):
-```bash
-export DVC_SITE_CACHE_DIR=&quot;$PWD/.dvc/site-cache&quot;
-python scripts/train_baseline.py --model-type constant --strategy mean --tag const_mean_v1
-python scripts/train_baseline.py --model-type linear --tag linear_v1
-# Зафиксировать в DVC:
-dvc add models/const_mean_v1_model.json models/const_mean_v1_metrics.json
-  dvc add models/linear_v1_model.json models/linear_v1_metrics.json
-  dvc push   # в gs://aith_epml
-  git add models/*.dvc .dvc/config .dvcignore
-  git commit -m &quot;Add baseline models (mean/median)&quot;
-</code></pre>
-<p>Метрики можно сравнивать между ревизиями Git через <code>dvc metrics diff --targets models/&lt;tag&gt;_metrics.json &lt;rev&gt;</code>.</p>
-<h2 id="_3">Оценка сохранённой модели</h2>
-<ul>
-<li>Скрипт: <code>python scripts/evaluate_model.py --model-path models/&lt;tag&gt;_model.json [--metrics-path out.json]</code></li>
-<li>По умолчанию берёт датасет <code>data/raw/WineQT.csv</code> (можно указать <code>--data-path data/splits/test.csv</code>) и пишет метрики в <code>models/&lt;tag&gt;_model_eval_metrics.json</code>, включая <code>split</code>/<code>data_path</code>.</li>
-<li>Результат можно добавить в DVC:
-  <code>bash
-  python scripts/evaluate_model.py --model-path models/linear_v1_model.json
-  dvc add models/linear_v1_model_eval_metrics.json
-  dvc push
-  git add models/*.dvc
-  git commit -m "Eval linear_v1"</code></li>
-</ul>
-<h2 id="_4">Сравнение версий</h2>
-<ul>
-<li>Меняйте <code>params.json</code> (например, strategy -&gt; median), делайте <code>dvc repro</code> и коммит, чтобы зафиксировать полную цепочку (данные → сплиты → модель → метрики) в одной ревизии.</li>
-<li>Сравнить метрики между ревизиями:
-  <code>bash
-  dvc metrics diff --targets models/metrics.json HEAD~1</code>
-  или по конкретным тегам/веткам Git.</li>
-</ul>
-<h2 id="_5">Быстрые принципы</h2>
-<ul>
-<li>Данные и модели версионируем одинаково через DVC (<code>dvc add/push</code>), храним только <code>.dvc</code> и конфиги в Git.</li>
-<li>Сплиты и модели завязываем на фиксированные seeds/параметры (<code>params.json</code>), чтобы <code>dvc repro</code> воспроизводил пайплайн end-to-end.</li>
-<li>Метрики и артефакты моделей лежат в <code>models/</code> и так же проходят через DVC; дифф метрик делаем <code>dvc metrics diff</code>.</li>
-</ul>
-<h2 id="remotes">Remotes и креды</h2>
-<ul>
-<li>Default remote: <code>gcs-data</code> → <code>gs://aith_epml</code> (см. <code>.dvc/config</code>); резерв <code>local-data</code> → <code>.dvc/storage</code>.</li>
-<li>Креды не коммитим:</li>
-<li>ADC (рекомендуется): <code>gcloud auth application-default login</code>.</li>
-<li>JSON ключ: сохранить локально (например, <code>~/.config/gcloud/aith-epml.json</code>), подключить:
-    <code>bash
-    dvc remote modify gcs-data credentialpath ~/.config/gcloud/aith-epml.json --local</code>
-    <code>.dvc/config.local</code> уже в gitignore.</li>
-</ul>
+<p>Это запускает локальный сервер с поддержкой Live Reload по адресу <code>http://127.0.0.1:8000</code>.</p>
+<h3 id="4-github-pages">4. Публикация в GitHub Pages</h3>
+<p>Для автоматизации публикации настроен CI/CD пайплайн через GitHub Actions.</p>
+<p><strong>Настройка GitHub Actions:</strong>
+Создан файл <a href=".github/workflows/docs.yml">docs.yml</a> со следующим сценарием:
+1. <strong>Триггер:</strong> Запуск при пуше в ветки <code>master</code> и <code>feature/hw6_autodocs</code> (для тестирования), если изменились файлы в <code>docs/</code>, <code>mkdocs.yml</code> или зависимости.
+2. <strong>Окружение:</strong> Используется <code>ubuntu-latest</code> с установкой <code>uv</code>.
+3. <strong>Сборка и деплой:</strong>
+   - Установка зависимостей через <code>uv sync --extra dev</code>.
+   - Выполнение команды <code>mkdocs gh-deploy</code>, которая собирает статический сайт и пушит его в ветку <code>gh-pages</code>.</p>
+<p><strong>Результат:</strong>
+Теперь при каждом обновлении документации в репозитории, сайт на GitHub Pages будет обновляться автоматически.</p>
 
 
 
