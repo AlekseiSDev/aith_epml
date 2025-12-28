@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../../hw_5/hw5_report_clearml/">
+      
+      
+        <link rel="next" href="../experiments/">
       
       
         
@@ -19,7 +23,7 @@
     
     
       
-        <title>Требования - Wine Quality EPML</title>
+        <title>HW6 - Wine Quality EPML</title>
       
     
     
@@ -70,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#hw6-docs-as-code" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Требования
+              HW6
             
           </span>
         </div>
@@ -214,10 +218,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../hw1_report/" class="md-tabs__link">
           
   
@@ -469,26 +475,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -506,7 +517,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -636,14 +647,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../hw6_autodocs/" class="md-nav__link">
+      <a href="../../hw_5/hw5_report_clearml/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    HW6 (Current)
+    HW5
   
 
     
@@ -652,6 +663,136 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW6
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Выбор и настройка MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Автоматизация API Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Публикация в GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Отчеты и воспроизводимость
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Скриншоты
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -850,90 +991,37 @@
 
 
 
-<h1 id="_1">Требования</h1>
-<ol>
-<li><strong>Техническая документация (2 балла):</strong><ul>
-<li>Создать документацию с помощью Sphinx или MkDocs</li>
-<li>Создать руководство по развертыванию</li>
-<li>Настроить автоматическую генерацию документации</li>
-<li>Создать примеры использования</li>
-</ul>
-</li>
-<li><strong>Публикация в Git Pages (3 балла):</strong><ul>
-<li>Настроить GitHub Actions для автоматической публикации</li>
-<li>Создать сайт с документацией на Git Pages</li>
-<li>Настроить автоматическое обновление при изменениях</li>
-</ul>
-</li>
-<li><strong>Отчеты об экспериментах (2 балла):</strong><ul>
-<li>Создать отчеты об экспериментах в формате Markdown</li>
-<li>Добавить графики и визуализации результатов</li>
-<li>Создать сравнительные таблицы экспериментов</li>
-<li>Настроить автоматическую генерацию отчетов</li>
-</ul>
-</li>
-<li><strong>Воспроизводимость (1 балл):</strong><ul>
-<li>Создать инструкции по воспроизведению</li>
-<li>Создать README с полным описанием </li>
-<li>Настроить автоматическую сборку документации</li>
-</ul>
-</li>
-</ol>
-<h2 id="_2">Критерии оценки</h2>
+<h1 id="hw6-docs-as-code">HW6 — отчет по автоматизации документации (Docs-as-Code)</h1>
+<p>В рамках данной работы была внедрена система автоматической генерации и публикации документации проекта с использованием MkDocs и GitHub Actions.</p>
+<h2 id="1-mkdocs">1. Выбор и настройка MkDocs</h2>
+<p>Для создания технической документации был выбран <strong>MkDocs</strong> с темой <strong>Material</strong>.</p>
+<p><strong>Преимущества:</strong>
+- Полная поддержка Markdown.
+- Быстрая сборка и современный UI.
+- Плагин <code>mkdocstrings</code> для автоматического извлечения документации из Python docstrings.</p>
+<p><strong>Процесс:</strong>
+1. Добавлены зависимости в <code>pyproject.toml</code>: <code>mkdocs</code>, <code>mkdocs-material</code>, <code>mkdocstrings[python]</code>.
+2. Создан файл конфигурации <code>mkdocs.yml</code>.
+3. Настроена структура навигации, объединяющая отчеты по всем домашним заданиям и API Reference.</p>
+<h2 id="2-api-reference">2. Автоматизация API Reference</h2>
+<p>Для автоматической генерации документации из кода использован плагин <code>mkdocstrings</code>.
+- Созданы страницы в <code>docs/api/</code> (позже перенесены для удобства), которые динамически подтягивают описание модулей <code>config</code> и <code>pipeline</code>.
+- Это позволяет поддерживать документацию в актуальном состоянии без ручного обновления при изменении кода.</p>
+<h2 id="3-github-pages">3. Публикация в GitHub Pages</h2>
+<p>Настроен CI/CD пайплайн через GitHub Actions (<a href=".github/workflows/docs.yml">docs.yml</a>).</p>
+<p><strong>Сценарий:</strong>
+- Триггер: push в ветки <code>master</code> или <code>feature/hw6_autodocs</code>.
+- Сборка: установка зависимостей через <code>uv</code>.
+- Деплой: команда <code>mkdocs gh-deploy</code> автоматически собирает сайт и пушит его в ветку <code>gh-pages</code>.</p>
+<h2 id="4">4. Отчеты и воспроизводимость</h2>
 <ul>
-<li><strong>Отлично (8 баллов):</strong> Полная документация, качественные отчеты</li>
-<li><strong>Хорошо (6-7 баллов):</strong> Хорошая документация, базовые отчеты</li>
-<li><strong>Удовлетворительно (4-5 баллов):</strong> Базовая документация</li>
-<li><strong>Неудовлетворительно (0-3 балла):</strong> Требования не выполнены</li>
+<li><strong>Эксперименты:</strong> Создана сводная таблица результатов в <a href="../experiments/">experiments.md</a>. Отмечено, что основной трекинг ведется в ClearML.</li>
+<li><strong>Воспроизводимость:</strong> Написана подробная инструкция в <a href="../reproduction/">reproduction.md</a>, описывающая шаги от клонирования репозитория до запуска пайплайна.</li>
 </ul>
-<h2 id="_3">Ход работы</h2>
-<h3 id="1">1. Выбор инструмента</h3>
-<p>Для создания технической документации был выбран <strong>MkDocs</strong>.</p>
-<p><strong>Причины выбора:</strong>
-- <strong>Markdown-native:</strong> Проект уже содержит множество отчетов в формате Markdown, которые MkDocs поддерживает "из коробки".
-- <strong>Простота настройки:</strong> Конфигурация осуществляется через один YAML-файл.
-- <strong>Современный интерфейс:</strong> Использование темы <code>material</code> обеспечивает отличный UX и адаптивность.
-- <strong>Docs-as-Code:</strong> Идеально вписывается в CI/CD процессы и философию хранения документации рядом с кодом.
-- <strong>Экосистема:</strong> Наличие плагина <code>mkdocstrings</code> позволяет легко генерировать документацию из Python docstrings.</p>
-<h3 id="2">2. Подключение и настройка</h3>
-<p><strong>Процесс установки:</strong>
-1. В <code>pyproject.toml</code> были добавлены зависимости в секцию <code>dev</code>:
-   - <code>mkdocs</code>: основной движок.
-   - <code>mkdocs-material</code>: современная тема оформления.
-   - <code>mkdocstrings[python]</code>: плагин для автоматической генерации API-документации из кода.
-2. Установка выполнена через <code>uv</code>:
-   <code>bash
-   uv sync --extra dev</code></p>
-<p><strong>Конфигурация:</strong>
-Создан файл <code>mkdocs.yml</code> в корне проекта со следующими настройками:
-- Использование темы <code>material</code>.
-- Настройка плагина <code>mkdocstrings</code> для поиска исходного кода в папке <code>src</code>.
-- Определение структуры навигации (<code>nav</code>), включающей существующие отчеты и новые страницы API Reference.</p>
-<p><strong>Автоматизация API:</strong>
-Созданы файлы в <code>docs/hw_6_autodocs/api/</code>, использующие синтаксис <code>::: module.name</code> для автоматического извлечения документации из Python-модулей.</p>
-<h3 id="3">3. Локальный запуск</h3>
-<p>Для проверки документации локально используется команда:</p>
-<pre><code class="language-bash">uv run mkdocs serve
-</code></pre>
-<p>Это запускает локальный сервер с поддержкой Live Reload по адресу <code>http://127.0.0.1:8000</code>.</p>
-<h3 id="4-github-pages">4. Публикация в GitHub Pages</h3>
-<p>Для автоматизации публикации настроен CI/CD пайплайн через GitHub Actions.</p>
-<p><strong>Настройка GitHub Actions:</strong>
-Создан файл <a href=".github/workflows/docs.yml">docs.yml</a> со следующим сценарием:
-1. <strong>Триггер:</strong> Запуск при пуше в ветки <code>master</code> и <code>feature/hw6_autodocs</code> (для тестирования), если изменились файлы в <code>docs/</code>, <code>mkdocs.yml</code> или зависимости.
-2. <strong>Окружение:</strong> Используется <code>ubuntu-latest</code> с установкой <code>uv</code>.
-3. <strong>Сборка и деплой:</strong>
-   - Установка зависимостей через <code>uv sync --extra dev</code>.
-   - Выполнение команды <code>mkdocs gh-deploy</code>, которая собирает статический сайт и пушит его в ветку <code>gh-pages</code>.</p>
-<p><strong>Результат:</strong>
-Теперь при каждом обновлении документации в репозитории, сайт на GitHub Pages будет обновляться автоматически.</p>
-<h3 id="5">5. Отчеты об экспериментах и воспроизводимость</h3>
-<p><strong>Замечание по экспериментам:</strong>
-В рамках данного проекта основное отслеживание экспериментов (метрики, параметры, графики) реализовано через <strong>ClearML</strong> (см. HW5). Дублирование этого функционала в виде статических Markdown-отчетов является избыточным, так как ClearML предоставляет динамические дашборды, сравнение моделей и версионирование артефактов в реальном времени.</p>
-<p>Тем не менее, для выполнения требований:
-- Создана сводная таблица лучших результатов в <a href="hw_6_autodocs/experiments.md">hw_6_autodocs/experiments.md</a>.
-- Добавлены инструкции по воспроизведению в <a href="hw_6_autodocs/reproduction.md">hw_6_autodocs/reproduction.md</a>.
-- Настроена автоматическая сборка всей документации (включая отчеты) через GitHub Actions.</p>
+<h2 id="_1">Скриншоты</h2>
+<p><img alt="Главная страница документации" src="../hw6_1.jpg" />
+<img alt="Автоматически сгенерированный API Reference" src="../hw6_2.jpg" />
+<img alt="Процесс публикации через GitHub Actions" src="../hw6_3.jpg" /></p>
 
 
 
