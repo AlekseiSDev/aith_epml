@@ -11,6 +11,6 @@ This project focuses on building a robust machine learning pipeline for wine qua
 
 ## Navigation
 
-- [Guides](luigi_pipeline_usage.md) - How to use the pipeline and tools.
-- [Reports](hw1_report.md) - Homework reports and experiment results.
+- [Guides](guides/luigi_pipeline_usage.md) - How to use the pipeline and tools.
+- [Reports](hw_1/hw1_report.md) - Homework reports and experiment results.
 - [API Reference](api/config.md) - Technical documentation of the source code.
