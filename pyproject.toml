@@ -21,6 +21,9 @@ dev = [
     "ruff==0.4.10",
     "mypy==1.10.0",
     "pre-commit==3.6.2",
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.24.0",
 ]
 
 [tool.uv]
@@ -28,6 +31,9 @@ dev-dependencies = [
     "ruff==0.4.10",
     "mypy==1.10.0",
     "pre-commit==3.6.2",
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.24.0",
 ]
 
 [tool.ruff]

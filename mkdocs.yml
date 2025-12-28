@@ -1,0 +1,36 @@
+site_name: Wine Quality EPML
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - header.autohide
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+
+nav:
+  - Home: index.md
+  - Guides:
+    - Pydantic Guide: pydantic_guide.md
+    - Luigi Pipeline: luigi_pipeline_usage.md
+  - Reports:
+    - HW1: hw1_report.md
+    - HW2: hw2_report_models_and_data_vcs.md
+    - HW3: hw3_report_exps_tracking.md
+    - HW4: hw4_report_pipeline_automatization.md
+    - HW5: hw_5/hw5_report_clearml.md
+    - HW6: hw_6_autodocs/hw6_autodocs_report.md
+  - Experiments: hw_6_autodocs/experiments.md
+  - Reproduction: hw_6_autodocs/reproduction.md
+  - API Reference:
+    - Config: api/config.md
+    - Pipeline: api/pipeline.md
