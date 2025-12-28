@@ -9,6 +9,7 @@ description = "ML engineering homework project on wine quality."
 requires-python = ">=3.10"
 dependencies = [
     "dvc[gs]>=3.64.2",
+    "clearml>=1.16.0",
     "scikit-learn>=1.4.0",
     "luigi>=3.5.0",
     "ruamel.yaml>=0.18.0",
