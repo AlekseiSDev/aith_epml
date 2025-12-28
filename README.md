@@ -74,6 +74,27 @@ python scripts/test_model.py --model-path models/linear_v1_model.json --split-na
 docker stop wine-quality-epml
 ```
 
+## ClearML (MLOps)
+Сервер ClearML поднимается через Docker Compose:
+```bash
+docker compose -f configs/clearml_server.docker-compose.yml up -d
+```
+
+Доступы:
+- Web UI: `http://localhost:8080`
+- API: `http://localhost:8008`
+- Fileserver: `http://localhost:8081`
+
+Остановка:
+```bash
+docker compose -f configs/clearml_server.docker-compose.yml down
+```
+
+Аутентификация/SDK (локально):
+```bash
+clearml-init
+```
+
 ## Git workflow
 - Основная ветка: `master`; рабочая ветка разработки: `develop`.
 - Фичи: `feature/<task>`, хотфиксы: `hotfix/<issue>`.
