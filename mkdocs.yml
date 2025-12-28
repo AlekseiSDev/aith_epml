@@ -28,6 +28,8 @@ nav:
     - HW3: hw3_report_exps_tracking.md
     - HW4: hw4_report_pipeline_automatization.md
     - HW6 (Current): hw6_autodocs.md
+  - Experiments: hw_6_autodocs/experiments.md
+  - Reproduction: hw_6_autodocs/reproduction.md
   - API Reference:
     - Config: api/config.md
     - Pipeline: api/pipeline.md
