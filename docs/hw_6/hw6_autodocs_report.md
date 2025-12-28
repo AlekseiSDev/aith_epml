@@ -24,7 +24,7 @@
 Настроен CI/CD пайплайн через GitHub Actions ([docs.yml](.github/workflows/docs.yml)).
 
 **Сценарий:**
-- Триггер: push в ветки `master` или `feature/hw6_autodocs`.
+- Триггер: push в ветку `master`, если изменились файлы в `docs/`, `mkdocs.yml` или зависимости.
 - Сборка: установка зависимостей через `uv`.
 - Деплой: команда `mkdocs gh-deploy` автоматически собирает сайт и пушит его в ветку `gh-pages`.
 

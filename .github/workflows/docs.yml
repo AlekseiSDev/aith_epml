@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - feature/hw6_autodocs
+      - hotfix_x
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
