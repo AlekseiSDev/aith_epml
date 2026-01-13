@@ -100,6 +100,12 @@ INFO: 📊 Pipeline Summary:
 **Параллельное выполнение (3 воркера)**  
 ![Parallel Execution](hw4_4.jpg)
 
+**Визуализация Luigi UI (Dependency Graph)**  
+![Luigi Graph](hw4_5.jpg)
+
+**Статус выполнения в Luigi UI**  
+![Luigi Status](hw4_6.jpg)
+
 **Валидация Pydantic**  
 ![Pydantic Validation](hw4_2.jpg)
 
