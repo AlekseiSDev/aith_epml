@@ -20,9 +20,10 @@ plugins:
 nav:
   - Home: index.md
   - Guides:
-    - Pydantic Guide: guides/pydantic_guide.md
-    - Luigi Pipeline: guides/luigi_pipeline_usage.md
-    - Models and Data VCS: guides/models_and_data_vcs.md
+    - Deployment Guide: guides/deployment_guide.md
+    - Pipeline Usage: guides/luigi_pipeline_usage.md
+    - Data & Models VCS: guides/models_and_data_vcs.md
+    - Reproduction: hw_6/reproduction.md
   - Reports:
     - HW1: hw_1/hw1_report.md
     - HW2: hw_2/hw2_report_models_and_data_vcs.md
@@ -31,7 +32,6 @@ nav:
     - HW5: hw_5/hw5_report_clearml.md
     - HW6: hw_6/hw6_autodocs_report.md
   - Experiments: hw_6/experiments.md
-  - Reproduction: hw_6/reproduction.md
   - API Reference:
     - Config: api/config.md
     - Pipeline: api/pipeline.md

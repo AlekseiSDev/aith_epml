@@ -1,5 +1,7 @@
 # Engineering Practices in ML — wine_quality_epml
 
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://AlekseiSDev.github.io/aith_epml/)
+
 Repo for Engineering Practices in ML course. Минимальная структура в стиле Cookiecutter Data Science, развернутая вручную под проект `wine_quality_epml`.
 
 ## Структура папок
