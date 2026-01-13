@@ -1,0 +1,19 @@
+# Parallel GBR Experiment
+split:
+  seed: 42
+  test_size: 0.15
+  eval_size: 0.15
+
+train:
+  model_type: gbr
+  standardize: false
+  paths:
+    model: models/parallel_gbr.pkl
+    metrics: reports/parallel_gbr_metrics.json
+    train_eval_metrics: reports/parallel_gbr_train_metrics.json
+    test_metrics: reports/parallel_gbr_test_metrics.json
+    predictions: reports/parallel_gbr_predictions.csv
+    test_predictions: reports/parallel_gbr_test_predictions.csv
+  gbr:
+    n_estimators: 1000
+    learning_rate: 0.01

@@ -1,0 +1,19 @@
+# Parallel RF Experiment
+split:
+  seed: 42
+  test_size: 0.15
+  eval_size: 0.15
+
+train:
+  model_type: rf
+  standardize: false
+  paths:
+    model: models/parallel_rf.pkl
+    metrics: reports/parallel_rf_metrics.json
+    train_eval_metrics: reports/parallel_rf_train_metrics.json
+    test_metrics: reports/parallel_rf_test_metrics.json
+    predictions: reports/parallel_rf_predictions.csv
+    test_predictions: reports/parallel_rf_test_predictions.csv
+  rf:
+    n_estimators: 1000
+    random_state: 42
