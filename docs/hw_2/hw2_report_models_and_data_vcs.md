@@ -3,15 +3,16 @@
 Репозиторий доведен до воспроизводимого состояния: данные/артефакты под DVC с GCS-remote, зависимости пинованы (uv.lock), качество кодом через pre-commit, собран Docker-образ с gcloud+DVC внутри.
 
 ## Шаги реализации
-1) **Инициализировали DVC для данных**: добавили `.dvc` для `data/raw/WineQT.csv` и `data/splits/*.csv`, remote `gs://aith_epml`, локальный кеш `DVC_SITE_CACHE_DIR="$PWD/.dvc/site-cache"`.
-2) **Стабилизировали код качества**: `uv sync --dev`, хуки `uv run pre-commit install`, прогон `uv run pre-commit run --all-files`.
-3) **Обновили пайплайн моделей**:
+
+1. **Инициализировали DVC для данных**: добавили `.dvc` для `data/raw/WineQT.csv` и `data/splits/*.csv`, remote `gs://aith_epml`, локальный кеш `DVC_SITE_CACHE_DIR="$PWD/.dvc/site-cache"`.
+2. **Стабилизировали код качества**: `uv sync --dev`, хуки `uv run pre-commit install`, прогон `uv run pre-commit run --all-files`.
+3. **Обновили пайплайн моделей**:
    - `train_baseline.py` теперь пишет модель и объединенные метрики train+eval (`models/<tag>_train_eval_metrics.json`).
    - Общий `evaluate_model.py` — ядро для предсказаний/метрик.
    - `test_model.py` — тестовая оценка сохраненной модели.
    - Артефакты `linear_v1` заведены в DVC.
-4) **Собрали воспроизводимый образ**: Dockerfile устанавливает `gcloud` и `dvc[gs]`, подтягивает зависимости через uv, оставляет `.dvc` в образе; в `PATH` прописана `.venv`.
-5) **Проверили end-to-end в контейнере**: авторизация `gcloud auth application-default login`, `dvc pull`, запуск `test_model.py` на скачанной модели.
+4. **Собрали воспроизводимый образ**: Dockerfile устанавливает `gcloud` и `dvc[gs]`, подтягивает зависимости через uv, оставляет `.dvc` в образе; в `PATH` прописана `.venv`.
+5. **Проверили end-to-end в контейнере**: авторизация `gcloud auth application-default login`, `dvc pull`, запуск `test_model.py` на скачанной модели.
 
 ## Команды, которые использовали
 ```bash
@@ -46,6 +47,7 @@ docker stop wine-quality-epml
 ```
 
 ## Итоговые артефакты
+
 - Данные: `data/raw/WineQT.csv` + `data/splits/*.csv` (под DVC).
 - Модель и метрики: `models/linear_v1_model.json`, `models/linear_v1_train_eval_metrics.json`, `models/linear_v1_model_test_metrics.json` (под DVC).
 - Инфраструктура воспроизводимости: `uv.lock`, `Dockerfile`, `.dockerignore` (с сохранением `.dvc`), pre-commit для ruff+mypy.

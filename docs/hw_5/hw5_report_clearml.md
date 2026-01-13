@@ -78,6 +78,7 @@ uv run python scripts/clearml_pipeline.py --params params.yaml
 - UI → Project `wine_quality_epml` → Pipelines (граф и статусы шагов).
 
 Уведомления:
+
 - UI → Settings → Notifications (по статусам задач).
 
 ## Скриншоты
