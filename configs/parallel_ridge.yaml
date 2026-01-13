@@ -1,0 +1,18 @@
+# Parallel Ridge Experiment
+split:
+  seed: 42
+  test_size: 0.15
+  eval_size: 0.15
+
+train:
+  model_type: ridge
+  standardize: true
+  paths:
+    model: models/parallel_ridge.pkl
+    metrics: reports/parallel_ridge_metrics.json
+    train_eval_metrics: reports/parallel_ridge_train_metrics.json
+    test_metrics: reports/parallel_ridge_test_metrics.json
+    predictions: reports/parallel_ridge_predictions.csv
+    test_predictions: reports/parallel_ridge_test_predictions.csv
+  ridge:
+    alpha: 1.0

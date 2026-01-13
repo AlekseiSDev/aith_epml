@@ -7,6 +7,7 @@ import sys
 
 import luigi
 
+from wine_quality_epml.pipeline.multi_train_task import MultiTrainTask
 from wine_quality_epml.pipeline.test_model_task import TestModelTask
 
 
@@ -17,6 +18,11 @@ def parse_args() -> argparse.Namespace:
         "--params",
         default="params.yaml",
         help="Path to params.yaml configuration file",
+    )
+    parser.add_argument(
+        "--multi",
+        action="store_true",
+        help="Run multiple models in parallel (using preset configs)",
     )
     parser.add_argument(
         "--workers",
@@ -36,9 +42,15 @@ def main() -> int:
     """Run the complete ML pipeline."""
     args = parse_args()
 
-    # Запускаем полный пайплайн через TestModelTask (который зависит от всех остальных)
+    # Выбираем задачу для запуска
+    if args.multi:
+        tasks = [MultiTrainTask()]
+    else:
+        tasks = [TestModelTask(params_path=args.params)]
+
+    # Запускаем пайплайн
     success = luigi.build(
-        [TestModelTask(params_path=args.params)],
+        tasks,
         workers=args.workers,
         local_scheduler=args.local_scheduler,
     )
