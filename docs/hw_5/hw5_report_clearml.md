@@ -3,12 +3,13 @@
 Развернут локальный ClearML Server, настроен трекинг экспериментов, регистрация моделей и базовый pipeline. Эксперименты и пайплайн зафиксированы в UI, артефакты и метрики сохраняются автоматически.
 
 ## 1. Настройка ClearML Server
+
 - Использован официальный `docker-compose` ClearML Server, адаптирован под Docker Desktop (named volumes).
 - Сервисы: ClearML apiserver/webserver/fileserver + MongoDB + Elasticsearch + Redis.
 - Порты:
-  - Web UI: `http://localhost:8080`
-  - API: `http://localhost:8008`
-  - Fileserver: `http://localhost:8081`
+    - Web UI: `http://localhost:8080`
+    - API: `http://localhost:8008`
+    - Fileserver: `http://localhost:8081`
 
 Запуск:
 ```bash
@@ -25,13 +26,15 @@ curl http://localhost:8008/debug.ping
 - Сгенерированы API keys, локальная настройка через `clearml-init`.
 
 ## 2. Трекинг экспериментов
+
 Скрипт: `scripts/clearml_experiment.py`.
 
 Что логируется:
-- параметры и конфиг: `task.connect(params)`
-- метрики: `mae`, `rmse`, `r2`, `fit_seconds`
-- артефакты: метрики, предсказания, метаданные модели
-- автологирование sklearn: `auto_connect_frameworks={"scikit": True}`
+
+- **Параметры и конфиг**: `task.connect(params)`
+- **Метрики**: `mae`, `rmse`, `r2`, `fit_seconds`
+- **Артефакты**: метрики, предсказания, метаданные модели
+- **Автологирование sklearn**: `auto_connect_frameworks={"scikit": True}`
 
 Пример запуска (2 эксперимента):
 ```bash
@@ -54,12 +57,14 @@ uv run python scripts/clearml_experiment.py --params configs/rf_experiment.yaml 
 Версии формируются по `task_id`, сравнение — в Model Registry UI.
 
 ## 4. ClearML Pipeline
+
 Скрипт: `scripts/clearml_pipeline.py`.
 
-Pipeline шаги:
-1) split → `scripts/split_data.py`
-2) train → `scripts/train_model.py`
-3) test → `scripts/test_trained_model.py`
+Шаги Pipeline:
+
+1. **Split** → `scripts/split_data.py`
+2. **Train** → `scripts/train_model.py`
+3. **Test** → `scripts/test_trained_model.py`
 
 Запуск:
 ```bash
