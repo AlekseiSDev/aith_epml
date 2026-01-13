@@ -730,44 +730,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-luigi-orchestration-4" class="md-nav__link">
+  <a href="#1-luigi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Этап 1: Luigi Orchestration (4 балла)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pydantic-configuration-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Этап 2: Pydantic Configuration (3 балла)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-luigi-pydantic-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Этап 3: Интеграция Luigi + Pydantic (2 балла) ✅
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Этап 3: Интеграция Luigi + Pydantic (2 балла) ✅">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#luigi-tasks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Изменения в Luigi Tasks
+        Этап 1: Оркестрация через Luigi
       
     </span>
   </a>
@@ -778,7 +744,41 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Комплексное логирование
+        Дополнительно: Параллельное выполнение
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pydantic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Этап 2: Конфигурация через Pydantic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Этап 3: Интеграция и тестирование
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Этап 3: Интеграция и тестирование">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#luigi-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Использование в Luigi Tasks
       
     </span>
   </a>
@@ -789,7 +789,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Новые возможности
+        Логирование и результаты
       
     </span>
   </a>
@@ -798,17 +798,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Тест 3: Обнаружение ошибок
-      
-    </span>
-  </a>
   
 </li>
         
@@ -833,7 +822,29 @@
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Структура проекта
+        Скриншоты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Структура решения
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Команды воспроизведения
       
     </span>
   </a>
@@ -842,17 +853,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Итого
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1119,218 +1119,93 @@
 <strong>Задание:</strong> Автоматизация ML пайплайнов</p>
 <p>Реализован автоматизированный пайплайн на Luigi с валидацией конфигураций через Pydantic.</p>
 <h2 id="_1">Выбранные инструменты</h2>
-<p><strong>Оркестрация:</strong> Luigi 3.5.0+ — легковесный, с кэшированием и параллельным выполнением.</p>
-<p><strong>Конфигурации:</strong> Pydantic 2.0.0+ — типобезопасная валидация с Field constraints и custom validators.</p>
+<p><strong>Оркестрация:</strong> Luigi 3.5.0+ — легковесный инструмент управления воркфлоу с кэшированием и поддержкой параллельного выполнения.</p>
+<p><strong>Конфигурации:</strong> Pydantic 2.0.0+ — современная библиотека для валидации данных и управления настройками с использованием аннотаций типов.</p>
 <hr />
 <h2 id="_2">Реализация</h2>
-<h3 id="1-luigi-orchestration-4">Этап 1: Luigi Orchestration (4 балла)</h3>
-<p>Созданы 3 Luigi tasks с цепочкой зависимостей: <code>SplitDataTask</code> → <code>TrainModelTask</code> → <code>TestModelTask</code>.</p>
+<h3 id="1-luigi">Этап 1: Оркестрация через Luigi</h3>
+<p>Созданы 3 Luigi tasks с четкой цепочкой зависимостей: <code>SplitDataTask</code> → <code>TrainModelTask</code> → <code>TestModelTask</code>.</p>
 <p><strong>Файлы:</strong>
-- <code>src/wine_quality_epml/pipeline/split_data_task.py</code> — разделение данных на train/eval/test
-- <code>src/wine_quality_epml/pipeline/train_model_task.py</code> — обучение модели (поддержка 10 алгоритмов)
-- <code>src/wine_quality_epml/pipeline/test_model_task.py</code> — оценка на test split
-- <code>src/wine_quality_epml/pipeline/runner.py</code> — CLI entry point
-- <code>luigi.cfg</code> — конфигурация планировщика</p>
-<p>Реализованы: кэширование через <code>LocalTarget</code>, параллелизация с <code>--workers</code>, декларативные зависимости через <code>requires()</code>.</p>
+- <a href="src/wine_quality_epml/pipeline/split_data_task.py">src/wine_quality_epml/pipeline/split_data_task.py</a> — разделение данных на train/eval/test.
+- <a href="src/wine_quality_epml/pipeline/train_model_task.py">src/wine_quality_epml/pipeline/train_model_task.py</a> — обучение модели (поддержка 10 алгоритмов).
+- <a href="src/wine_quality_epml/pipeline/test_model_task.py">src/wine_quality_epml/pipeline/test_model_task.py</a> — оценка на тестовом сплите.
+- <a href="src/wine_quality_epml/pipeline/runner.py">src/wine_quality_epml/pipeline/runner.py</a> — точка входа CLI.
+- <a href="luigi.cfg">luigi.cfg</a> — конфигурация планировщика.</p>
+<p>Реализованы: кэширование результатов через <code>LocalTarget</code>, поддержка параллелизации через параметр <code>--workers</code> и декларативное описание зависимостей через метод <code>requires()</code>.</p>
 <p><strong>Запуск:</strong></p>
 <pre><code class="language-bash">uv run python -m wine_quality_epml.pipeline.runner --local-scheduler
 </code></pre>
-<h3 id="2-pydantic-configuration-3">Этап 2: Pydantic Configuration (3 балла)</h3>
-<p>Создано 11 Pydantic моделей с валидацией:</p>
+<h3 id="_3">Дополнительно: Параллельное выполнение</h3>
+<p>Для демонстрации возможностей Luigi по параллелизации задач реализован <code>MultiTrainTask</code>, который запускает обучение нескольких независимых моделей одновременно.</p>
+<p><strong>Запуск с 3 воркерами:</strong></p>
+<pre><code class="language-bash">uv run python -m wine_quality_epml.pipeline.runner --multi --workers 3 --local-scheduler
+</code></pre>
+<p>Это позволяет задействовать несколько ядер процессора для обучения разных моделей (например, RF, Ridge и GBR) после завершения общего этапа подготовки данных.</p>
+<h3 id="2-pydantic">Этап 2: Конфигурация через Pydantic</h3>
+<p>Создано 11 Pydantic моделей для строгой валидации параметров:</p>
 <p><strong>Файлы:</strong>
-- <code>src/wine_quality_epml/config/schemas.py</code> — Pydantic схемы (SplitConfig, PathsConfig, 10 моделей ML, TrainConfig, ProjectConfig)
-- <code>src/wine_quality_epml/config/loader.py</code> — загрузчик YAML с композицией и env overrides</p>
-<p><strong>Ключевые схемы:</strong>
-- <code>SplitConfig</code> — проверяет что <code>test_size + eval_size &lt; 1.0</code>
-- 10 моделей ML (linear, ridge, lasso, elasticnet, svr, knn, rf, extra_trees, gbr, hgb) — каждая с Field constraints (n_estimators &gt;= 1, learning_rate &gt; 0, etc.)
-- <code>TrainConfig</code> — метод <code>get_model_config()</code> возвращает типизированный config</p>
-<p><strong>Примеры конфигов:</strong>
-- <code>configs/ridge_baseline.yaml</code>
-- <code>configs/gbr_tuned.yaml</code>
-- <code>configs/rf_experiment.yaml</code></p>
-<p>Загрузчик поддерживает YAML-композицию (<code>base: path/to/base.yaml</code>) и переопределение через env vars (<code>WINE_QUALITY_TRAIN__MODEL_TYPE=lasso</code>).</p>
+- <a href="src/wine_quality_epml/config/schemas.py">src/wine_quality_epml/config/schemas.py</a> — Pydantic схемы (SplitConfig, PathsConfig, модели ML, TrainConfig, ProjectConfig).
+- <a href="src/wine_quality_epml/config/loader.py">src/wine_quality_epml/config/loader.py</a> — загрузчик YAML с поддержкой композиции и переопределения через переменные окружения.</p>
+<p><strong>Ключевые особенности:</strong>
+- <strong>Валидация отношений:</strong> <code>SplitConfig</code> проверяет баланс долей выборок.
+- <strong>Типизация моделей:</strong> Каждая из 10 моделей (Linear, Ridge, Lasso, GBR и др.) имеет свои ограничения на гиперпараметры (например, <code>n_estimators &gt;= 1</code>).
+- <strong>Композиция:</strong> Поддержка YAML-композиции (<code>base: path/to/base.yaml</code>) и env overrides (например, <code>WINE_QUALITY_TRAIN__MODEL_TYPE=lasso</code>).</p>
 <hr />
-<h3 id="3-luigi-pydantic-2">Этап 3: Интеграция Luigi + Pydantic (2 балла) ✅</h3>
-<h4 id="luigi-tasks">Изменения в Luigi Tasks</h4>
-<p>Все 3 tasks переработаны для использования Pydantic:</p>
-<p><strong>1. Добавлен метод загрузки конфигурации:</strong></p>
-<pre><code class="language-python">from wine_quality_epml.config.loader import load_config
-from wine_quality_epml.config.schemas import ProjectConfig
-
-class SplitDataTask(luigi.Task):
-    params_path = luigi.Parameter(default=&quot;params.yaml&quot;)
-
-    def _load_config(self) -&gt; ProjectConfig:
-        &quot;&quot;&quot;Загружает и валидирует конфигурацию через Pydantic&quot;&quot;&quot;
-        return load_config(Path(str(self.params_path)))
+<h3 id="3">Этап 3: Интеграция и тестирование</h3>
+<h4 id="luigi-tasks">Использование в Luigi Tasks</h4>
+<p>Задачи Luigi используют загрузчик конфигураций для получения валидированных данных. Это обеспечивает "fail-fast" поведение — пайплайн упадет еще до начала работы при наличии ошибок в конфиге.</p>
+<p><strong>Пример загрузки:</strong></p>
+<pre><code class="language-python">def _load_config(self) -&gt; ProjectConfig:
+    return load_config(Path(str(self.params_path)))
 </code></pre>
-<p><strong>2. Использование валидированного config:</strong></p>
-<pre><code class="language-python">def run(self):
-    config = self._load_config()  # Pydantic validation происходит здесь
-
-    # Типобезопасный доступ к параметрам
-    logger.info(f&quot;Data splitting: test={config.split.test_size}, &quot;
-                f&quot;eval={config.split.eval_size}, seed={config.split.seed}&quot;)
-
-    X_train, X_test = train_test_split(
-        X, y,
-        test_size=config.split.test_size,  # Гарантированно float в (0, 1)
-        random_state=config.split.seed      # Гарантированно int &gt;= 0
-    )
-</code></pre>
-<p><strong>3. Динамическая инициализация моделей:</strong></p>
-<pre><code class="language-python">def _build_estimator(self, config: ProjectConfig):
-    &quot;&quot;&quot;Строит estimator из валидированного Pydantic config&quot;&quot;&quot;
-    model_config = config.train.get_model_config()  # Типизированный union
-    model_params = model_config.model_dump()        # Pydantic → dict
-
-    logger.info(f&quot;Building {config.train.model_type} with params: {model_params}&quot;)
-
-    model_map = {
-        &quot;linear&quot;: LinearRegression,
-        &quot;ridge&quot;: Ridge,
-        &quot;lasso&quot;: Lasso,
-        &quot;gbr&quot;: GradientBoostingRegressor,
-        # ... 10 моделей
-    }
-
-    model_class = model_map[config.train.model_type]
-    return model_class(**model_params)
-</code></pre>
-<h4 id="_3">Комплексное логирование</h4>
-<p>Добавлены информативные логи на всех этапах:</p>
-<pre><code>INFO: Data splitting: test=0.15, eval=0.15, seed=42
+<p><strong>Динамическая инициализация:</strong>
+Модели создаются на основе <code>model_type</code> из конфигурации, автоматически подставляя нужные гиперпараметры из валидированной Pydantic-схемы.</p>
+<h4 id="_4">Логирование и результаты</h4>
+<p>Добавлено подробное логирование этапов выполнения:</p>
+<pre><code class="language-text">INFO: Data splitting: test=0.15, eval=0.15, seed=42
 INFO: Splits created: train=779 rows, eval=172 rows, test=172 rows
 INFO: Building gbr with params: {'n_estimators': 3000, 'learning_rate': 0.05, ...}
 INFO: Training gbr...
-INFO: Training completed in 2.34s
-INFO: Train metrics - R²: 0.8932, RMSE: 0.5123
-INFO: Eval metrics - R²: 0.2156, RMSE: 0.6981
-INFO: Testing model on: data/splits/test.csv
 INFO: 📊 Pipeline Summary:
   Model: gbr
   Test R²: 0.1181
   Test RMSE: 0.7355
 </code></pre>
-<h4 id="_4">Новые возможности</h4>
-<p><strong>1. Переключение моделей через YAML:</strong></p>
-<pre><code class="language-bash"># Ridge
-uv run python -m wine_quality_epml.pipeline.runner \
-    --params configs/ridge_baseline.yaml --local-scheduler
-
-# Random Forest
-uv run python -m wine_quality_epml.pipeline.runner \
-    --params configs/rf_experiment.yaml --local-scheduler
-</code></pre>
-<p><strong>2. Переопределение через env vars (для CI/CD):</strong></p>
-<pre><code class="language-bash">WINE_QUALITY_TRAIN__MODEL_TYPE=lasso \
-WINE_QUALITY_TRAIN__LASSO__ALPHA=0.1 \
-uv run python -m wine_quality_epml.pipeline.runner --local-scheduler
-</code></pre>
-<p><strong>3. Fail-fast валидация:</strong></p>
-<pre><code class="language-python"># Ошибка конфигурации обнаруживается ДО начала пайплайна
-config = load_config('invalid.yaml')
-# ValidationError: test_size + eval_size must be &lt; 1.0
-### Этап 3: Интеграция Luigi + Pydantic (2 балла)
-
-Все Luigi tasks переработаны для использования Pydantic:
-
-### Этап 4: Документация (1 балл)
-
-Создана документация:
-- `docs/hw4_stage1_luigi_implementation.md`
-- `docs/hw4_stage2_pydantic_implementation.md`
-- `docs/hw4_stage3_integration.md`
-- `docs/pydantic_guide.md`
-- `docs/luigi_pipeline_usage.mdint(f'✅ Config loaded: {config.train.model_type}')
-print(f'Model params: {config.train.get_model_config().model_dump()}')
-&quot;
-
-# Output:
-# ✅ Config loaded: gbr
-# Model params: {'n_estimators': 3000, 'learning_rate': 0.05, ...}
-</code></pre>
-<h3 id="3">Тест 3: Обнаружение ошибок</h3>
-<pre><code class="language-bash"># Невалидный конфиг (test_size + eval_size &gt; 1.0)
-uv run python -c &quot;
-from wine_quality_epml.config.loader import load_config
-from pydantic import ValidationError
-import yaml, tempfile
-
-invalid = {
-    'split': {'test_size': 0.7, 'eval_size': 0.5},
-    'train': {'model_type': 'gbr', 'gbr': {'n_estimators': -100}}
-}
-
-with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml') as f:
-    yaml.dump(invalid, f)
-    f.flush()
-    try:
-        config = load_config(f.name)
-    except ValidationError as e:
-        print('✅ Pydantic validation caught errors:')
-        for err in e.errors():
-            print(f\&quot;  - {err['loc']}: {err['msg']}\&quot;)
-&quot;
-
-# Output:
-# ✅ Pydantic validation caught errors:
-#   - ('split',): test_size + eval_size must be &lt; 1.0, got 1.2
-#   - ('train', 'gbr', 'n_estimators'): Input should be &gt;= 1
-</code></pre>
 <hr />
 <h2 id="_5">Итоговые артефакты</h2>
-<h3 id="_6">Структура проекта</h3>
-<pre><code>src/wine_quality_epml/
-## Команды для воспроизведения
-
-```bash
-# Установка
-uv venv .venv &amp;&amp; source .venv/bin/activate
-uv sync --dev
-uv run pre-commit install
-
-# Запуск пайплайна
-uv run python -m wine_quality_epml.pipeline.runner --local-scheduler
-
-# С кастомным конфигом
-uv run python -m wine_quality_epml.pipeline.runner --params configs/ridge_baseline.yaml --local-scheduler
-
-# Проверка качества
-uv run ruff format src/ &amp;&amp; uv run ruff check src/ --fix &amp;&amp; uv run mypy src/## Итоговые файлы
-
-</code></pre>
-<p>src/wine_quality_epml/
+<h3 id="_6">Скриншоты</h3>
+<p><strong>Исполнение пайплайна Luigi</strong><br />
+<img alt="Luigi Pipeline Execution" src="../hw4_1.jpg" /></p>
+<p><strong>Параллельное выполнение (3 воркера)</strong><br />
+<img alt="Parallel Execution" src="../hw4_4.jpg" /></p>
+<p><strong>Визуализация Luigi UI (Dependency Graph)</strong><br />
+<img alt="Luigi Graph" src="../hw4_5.jpg" /></p>
+<p><strong>Статус выполнения в Luigi UI</strong><br />
+<img alt="Luigi Status" src="../hw4_6.jpg" /></p>
+<p><strong>Валидация Pydantic</strong><br />
+<img alt="Pydantic Validation" src="../hw4_2.jpg" /></p>
+<p><strong>Результаты интеграции</strong><br />
+<img alt="Integration Results" src="../hw4_3.jpg" /></p>
+<h3 id="_7">Структура решения</h3>
+<pre><code class="language-text">src/wine_quality_epml/
 ├── pipeline/              # Luigi tasks
 │   ├── split_data_task.py
 │   ├── train_model_task.py
 │   ├── test_model_task.py
+│   ├── multi_train_task.py # Новое: параллельное обучение
 │   └── runner.py
-└── config/                # Pydantic
-    ├── schemas.py         # 11 моделей
-    └── loader.py</p>
-<p>configs/                   # Примеры конфигов
-├── ridge_baseline.yaml
-├── gbr_tuned.yaml
-└── rf_experiment.yaml</p>
-<p>luigi.cfg                  # Luigi scheduler
-params.yaml                # Основной config
-```</p>
-<p>Зависимости: <code>luigi&gt;=3.5.0</code>, <code>pydantic&gt;=2.0.0</code>, <code>ruamel.yaml&gt;=0.18.0</code>, <code>scikit-learn</code>, <code>pandas</code>, <code>joblib</code>.## Скриншоты</p>
-<p><strong>Этап 1: Luigi Orchestration</strong><br />
-<img alt="Luigi Pipeline Execution" src="../hw4_1.jpg" /></p>
-<p><strong>Этап 2: Pydantic Configuration</strong><br />
-<img alt="Pydantic Validation" src="../hw4_2.jpg" /></p>
-<p><strong>Этап 3: Integration &amp; Testing</strong><br />
-<img alt="Integration Results" src="../hw4_3.jpg" /></p>
-<hr />
-<h2 id="_7">Итого</h2>
-<p>Реализованы все 4 этапа:
-- Luigi orchestration — 3 tasks с кэшированием и зависимостями
-- Pydantic configuration — 11 схем с валидацией
-- Интеграция — типобезопасная загрузка конфигов в Luigi tasks
-- Документация — 5 файлов с инструкциями</p>
-<p>Пайплайн автоматизирован, легко расширяется новыми моделями и этапами</p>
+└── config/                # Схемы и загрузчик
+    ├── schemas.py
+    └── loader.py
+</code></pre>
+<h3 id="_8">Команды воспроизведения</h3>
+<pre><code class="language-bash"># Установка зависимостей
+uv sync --dev
+
+# Запуск пайплайна с конкретным конфигом
+uv run python -m wine_quality_epml.pipeline.runner --params configs/ridge_baseline.yaml --local-scheduler
+</code></pre>
+<p>Пайплайн полностью автоматизирован, типизирован и готов к расширению.</p>
 
 
 
