@@ -20,6 +20,7 @@
 Созданы 3 Luigi tasks с четкой цепочкой зависимостей: `SplitDataTask` → `TrainModelTask` → `TestModelTask`.
 
 **Файлы:**
+
 - [src/wine_quality_epml/pipeline/split_data_task.py](src/wine_quality_epml/pipeline/split_data_task.py) — разделение данных на train/eval/test.
 - [src/wine_quality_epml/pipeline/train_model_task.py](src/wine_quality_epml/pipeline/train_model_task.py) — обучение модели (поддержка 10 алгоритмов).
 - [src/wine_quality_epml/pipeline/test_model_task.py](src/wine_quality_epml/pipeline/test_model_task.py) — оценка на тестовом сплите.
@@ -49,10 +50,12 @@ uv run python -m wine_quality_epml.pipeline.runner --multi --workers 3 --local-s
 Создано 11 Pydantic моделей для строгой валидации параметров:
 
 **Файлы:**
+
 - [src/wine_quality_epml/config/schemas.py](src/wine_quality_epml/config/schemas.py) — Pydantic схемы (SplitConfig, PathsConfig, модели ML, TrainConfig, ProjectConfig).
 - [src/wine_quality_epml/config/loader.py](src/wine_quality_epml/config/loader.py) — загрузчик YAML с поддержкой композиции и переопределения через переменные окружения.
 
 **Ключевые особенности:**
+
 - **Валидация отношений:** `SplitConfig` проверяет баланс долей выборок.
 - **Типизация моделей:** Каждая из 10 моделей (Linear, Ridge, Lasso, GBR и др.) имеет свои ограничения на гиперпараметры (например, `n_estimators >= 1`).
 - **Композиция:** Поддержка YAML-композиции (`base: path/to/base.yaml`) и env overrides (например, `WINE_QUALITY_TRAIN__MODEL_TYPE=lasso`).
