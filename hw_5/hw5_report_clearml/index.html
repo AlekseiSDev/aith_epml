@@ -202,7 +202,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../guides/pydantic_guide/" class="md-tabs__link">
+        <a href="../../guides/deployment_guide/" class="md-tabs__link">
           
   
   
@@ -249,25 +249,6 @@
     
   
   Experiments
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../hw_6/reproduction/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Reproduction
 
       </a>
     </li>
@@ -415,14 +396,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/pydantic_guide/" class="md-nav__link">
+      <a href="../../guides/deployment_guide/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pydantic Guide
+    Deployment Guide
   
 
     
@@ -450,7 +431,7 @@
   <span class="md-ellipsis">
     
   
-    Luigi Pipeline
+    Pipeline Usage
   
 
     
@@ -478,7 +459,35 @@
   <span class="md-ellipsis">
     
   
-    Models and Data VCS
+    Data & Models VCS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hw_6/reproduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproduction
   
 
     
@@ -866,33 +875,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../hw_6/reproduction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Reproduction
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
     
@@ -907,10 +889,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -928,8 +910,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1025,10 +1007,12 @@
 <ul>
 <li>Использован официальный <code>docker-compose</code> ClearML Server, адаптирован под Docker Desktop (named volumes).</li>
 <li>Сервисы: ClearML apiserver/webserver/fileserver + MongoDB + Elasticsearch + Redis.</li>
-<li>Порты:</li>
+<li>Порты:<ul>
 <li>Web UI: <code>http://localhost:8080</code></li>
 <li>API: <code>http://localhost:8008</code></li>
 <li>Fileserver: <code>http://localhost:8081</code></li>
+</ul>
+</li>
 </ul>
 <p>Запуск:</p>
 <pre><code class="language-bash">docker compose -f configs/clearml_server.docker-compose.yml up -d
@@ -1041,11 +1025,13 @@
 - Сгенерированы API keys, локальная настройка через <code>clearml-init</code>.</p>
 <h2 id="2">2. Трекинг экспериментов</h2>
 <p>Скрипт: <code>scripts/clearml_experiment.py</code>.</p>
-<p>Что логируется:
-- параметры и конфиг: <code>task.connect(params)</code>
-- метрики: <code>mae</code>, <code>rmse</code>, <code>r2</code>, <code>fit_seconds</code>
-- артефакты: метрики, предсказания, метаданные модели
-- автологирование sklearn: <code>auto_connect_frameworks={"scikit": True}</code></p>
+<p>Что логируется:</p>
+<ul>
+<li><strong>Параметры и конфиг</strong>: <code>task.connect(params)</code></li>
+<li><strong>Метрики</strong>: <code>mae</code>, <code>rmse</code>, <code>r2</code>, <code>fit_seconds</code></li>
+<li><strong>Артефакты</strong>: метрики, предсказания, метаданные модели</li>
+<li><strong>Автологирование sklearn</strong>: <code>auto_connect_frameworks={"scikit": True}</code></li>
+</ul>
 <p>Пример запуска (2 эксперимента):</p>
 <pre><code class="language-bash">uv run python scripts/clearml_experiment.py --params configs/ridge_baseline.yaml --task-name ridge_baseline
 uv run python scripts/clearml_experiment.py --params configs/rf_experiment.yaml --task-name rf_experiment
@@ -1062,10 +1048,12 @@ uv run python scripts/clearml_experiment.py --params configs/rf_experiment.yaml 
 <p>Версии формируются по <code>task_id</code>, сравнение — в Model Registry UI.</p>
 <h2 id="4-clearml-pipeline">4. ClearML Pipeline</h2>
 <p>Скрипт: <code>scripts/clearml_pipeline.py</code>.</p>
-<p>Pipeline шаги:
-1) split → <code>scripts/split_data.py</code>
-2) train → <code>scripts/train_model.py</code>
-3) test → <code>scripts/test_trained_model.py</code></p>
+<p>Шаги Pipeline:</p>
+<ol>
+<li><strong>Split</strong> → <code>scripts/split_data.py</code></li>
+<li><strong>Train</strong> → <code>scripts/train_model.py</code></li>
+<li><strong>Test</strong> → <code>scripts/test_trained_model.py</code></li>
+</ol>
 <p>Запуск:</p>
 <pre><code class="language-bash">uv run python scripts/clearml_pipeline.py --params params.yaml
 </code></pre>
@@ -1073,8 +1061,10 @@ uv run python scripts/clearml_experiment.py --params configs/rf_experiment.yaml 
 - Pipeline task id: <code>06c4e546657848818e8dbf08b0d4a591</code></p>
 <p>Мониторинг:
 - UI → Project <code>wine_quality_epml</code> → Pipelines (граф и статусы шагов).</p>
-<p>Уведомления:
-- UI → Settings → Notifications (по статусам задач).</p>
+<p>Уведомления:</p>
+<ul>
+<li>UI → Settings → Notifications (по статусам задач).</li>
+</ul>
 <h2 id="_1">Скриншоты</h2>
 <p><img alt="ClearML Server UI и доступ к проекту" src="../hw5_1.jpg" />
 <img alt="Список экспериментов и метрики" src="../hw5_2.jpg" />

@@ -202,7 +202,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../guides/pydantic_guide/" class="md-tabs__link">
+        <a href="../../guides/deployment_guide/" class="md-tabs__link">
           
   
   
@@ -249,25 +249,6 @@
     
   
   Experiments
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../hw_6/reproduction/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Reproduction
 
       </a>
     </li>
@@ -415,14 +396,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/pydantic_guide/" class="md-nav__link">
+      <a href="../../guides/deployment_guide/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pydantic Guide
+    Deployment Guide
   
 
     
@@ -450,7 +431,7 @@
   <span class="md-ellipsis">
     
   
-    Luigi Pipeline
+    Pipeline Usage
   
 
     
@@ -478,7 +459,35 @@
   <span class="md-ellipsis">
     
   
-    Models and Data VCS
+    Data & Models VCS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hw_6/reproduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproduction
   
 
     
@@ -961,33 +970,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../hw_6/reproduction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Reproduction
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
     
@@ -1002,10 +984,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -1023,8 +1005,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1125,12 +1107,14 @@
 <h2 id="_2">Реализация</h2>
 <h3 id="1-luigi">Этап 1: Оркестрация через Luigi</h3>
 <p>Созданы 3 Luigi tasks с четкой цепочкой зависимостей: <code>SplitDataTask</code> → <code>TrainModelTask</code> → <code>TestModelTask</code>.</p>
-<p><strong>Файлы:</strong>
-- <a href="src/wine_quality_epml/pipeline/split_data_task.py">src/wine_quality_epml/pipeline/split_data_task.py</a> — разделение данных на train/eval/test.
-- <a href="src/wine_quality_epml/pipeline/train_model_task.py">src/wine_quality_epml/pipeline/train_model_task.py</a> — обучение модели (поддержка 10 алгоритмов).
-- <a href="src/wine_quality_epml/pipeline/test_model_task.py">src/wine_quality_epml/pipeline/test_model_task.py</a> — оценка на тестовом сплите.
-- <a href="src/wine_quality_epml/pipeline/runner.py">src/wine_quality_epml/pipeline/runner.py</a> — точка входа CLI.
-- <a href="luigi.cfg">luigi.cfg</a> — конфигурация планировщика.</p>
+<p><strong>Файлы:</strong></p>
+<ul>
+<li><a href="src/wine_quality_epml/pipeline/split_data_task.py">src/wine_quality_epml/pipeline/split_data_task.py</a> — разделение данных на train/eval/test.</li>
+<li><a href="src/wine_quality_epml/pipeline/train_model_task.py">src/wine_quality_epml/pipeline/train_model_task.py</a> — обучение модели (поддержка 10 алгоритмов).</li>
+<li><a href="src/wine_quality_epml/pipeline/test_model_task.py">src/wine_quality_epml/pipeline/test_model_task.py</a> — оценка на тестовом сплите.</li>
+<li><a href="src/wine_quality_epml/pipeline/runner.py">src/wine_quality_epml/pipeline/runner.py</a> — точка входа CLI.</li>
+<li><a href="luigi.cfg">luigi.cfg</a> — конфигурация планировщика.</li>
+</ul>
 <p>Реализованы: кэширование результатов через <code>LocalTarget</code>, поддержка параллелизации через параметр <code>--workers</code> и декларативное описание зависимостей через метод <code>requires()</code>.</p>
 <p><strong>Запуск:</strong></p>
 <pre><code class="language-bash">uv run python -m wine_quality_epml.pipeline.runner --local-scheduler
@@ -1143,13 +1127,17 @@
 <p>Это позволяет задействовать несколько ядер процессора для обучения разных моделей (например, RF, Ridge и GBR) после завершения общего этапа подготовки данных.</p>
 <h3 id="2-pydantic">Этап 2: Конфигурация через Pydantic</h3>
 <p>Создано 11 Pydantic моделей для строгой валидации параметров:</p>
-<p><strong>Файлы:</strong>
-- <a href="src/wine_quality_epml/config/schemas.py">src/wine_quality_epml/config/schemas.py</a> — Pydantic схемы (SplitConfig, PathsConfig, модели ML, TrainConfig, ProjectConfig).
-- <a href="src/wine_quality_epml/config/loader.py">src/wine_quality_epml/config/loader.py</a> — загрузчик YAML с поддержкой композиции и переопределения через переменные окружения.</p>
-<p><strong>Ключевые особенности:</strong>
-- <strong>Валидация отношений:</strong> <code>SplitConfig</code> проверяет баланс долей выборок.
-- <strong>Типизация моделей:</strong> Каждая из 10 моделей (Linear, Ridge, Lasso, GBR и др.) имеет свои ограничения на гиперпараметры (например, <code>n_estimators &gt;= 1</code>).
-- <strong>Композиция:</strong> Поддержка YAML-композиции (<code>base: path/to/base.yaml</code>) и env overrides (например, <code>WINE_QUALITY_TRAIN__MODEL_TYPE=lasso</code>).</p>
+<p><strong>Файлы:</strong></p>
+<ul>
+<li><a href="src/wine_quality_epml/config/schemas.py">src/wine_quality_epml/config/schemas.py</a> — Pydantic схемы (SplitConfig, PathsConfig, модели ML, TrainConfig, ProjectConfig).</li>
+<li><a href="src/wine_quality_epml/config/loader.py">src/wine_quality_epml/config/loader.py</a> — загрузчик YAML с поддержкой композиции и переопределения через переменные окружения.</li>
+</ul>
+<p><strong>Ключевые особенности:</strong></p>
+<ul>
+<li><strong>Валидация отношений:</strong> <code>SplitConfig</code> проверяет баланс долей выборок.</li>
+<li><strong>Типизация моделей:</strong> Каждая из 10 моделей (Linear, Ridge, Lasso, GBR и др.) имеет свои ограничения на гиперпараметры (например, <code>n_estimators &gt;= 1</code>).</li>
+<li><strong>Композиция:</strong> Поддержка YAML-композиции (<code>base: path/to/base.yaml</code>) и env overrides (например, <code>WINE_QUALITY_TRAIN__MODEL_TYPE=lasso</code>).</li>
+</ul>
 <hr />
 <h3 id="3">Этап 3: Интеграция и тестирование</h3>
 <h4 id="luigi-tasks">Использование в Luigi Tasks</h4>

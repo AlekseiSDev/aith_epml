@@ -202,7 +202,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../guides/pydantic_guide/" class="md-tabs__link">
+        <a href="../../guides/deployment_guide/" class="md-tabs__link">
           
   
   
@@ -249,25 +249,6 @@
     
   
   Experiments
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../reproduction/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Reproduction
 
       </a>
     </li>
@@ -415,14 +396,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../guides/pydantic_guide/" class="md-nav__link">
+      <a href="../../guides/deployment_guide/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pydantic Guide
+    Deployment Guide
   
 
     
@@ -450,7 +431,7 @@
   <span class="md-ellipsis">
     
   
-    Luigi Pipeline
+    Pipeline Usage
   
 
     
@@ -478,7 +459,35 @@
   <span class="md-ellipsis">
     
   
-    Models and Data VCS
+    Data & Models VCS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reproduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproduction
   
 
     
@@ -866,33 +875,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../reproduction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Reproduction
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
     
@@ -907,10 +889,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -928,8 +910,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1023,24 +1005,30 @@
 <p>В рамках данной работы была внедрена система автоматической генерации и публикации документации проекта с использованием MkDocs и GitHub Actions.</p>
 <h2 id="1-mkdocs">1. Выбор и настройка MkDocs</h2>
 <p>Для создания технической документации был выбран <strong>MkDocs</strong> с темой <strong>Material</strong>.</p>
-<p><strong>Преимущества:</strong>
-- Полная поддержка Markdown.
-- Быстрая сборка и современный UI.
-- Плагин <code>mkdocstrings</code> для автоматического извлечения документации из Python docstrings.</p>
-<p><strong>Процесс:</strong>
-1. Добавлены зависимости в <code>pyproject.toml</code>: <code>mkdocs</code>, <code>mkdocs-material</code>, <code>mkdocstrings[python]</code>.
-2. Создан файл конфигурации <code>mkdocs.yml</code>.
-3. Настроена структура навигации, объединяющая отчеты по всем домашним заданиям и API Reference.</p>
+<p><strong>Преимущества:</strong></p>
+<ul>
+<li>Полная поддержка Markdown.</li>
+<li>Быстрая сборка и современный UI.</li>
+<li>Плагин <code>mkdocstrings</code> для автоматического извлечения документации из Python docstrings.</li>
+</ul>
+<p><strong>Процесс:</strong></p>
+<ol>
+<li>Добавлены зависимости в <code>pyproject.toml</code>: <code>mkdocs</code>, <code>mkdocs-material</code>, <code>mkdocstrings[python]</code>.</li>
+<li>Создан файл конфигурации <code>mkdocs.yml</code>.</li>
+<li>Настроена структура навигации, объединяющая отчеты по всем домашним заданиям и API Reference.</li>
+</ol>
 <h2 id="2-api-reference">2. Автоматизация API Reference</h2>
 <p>Для автоматической генерации документации из кода использован плагин <code>mkdocstrings</code>.
 - Созданы страницы в <code>docs/api/</code> (позже перенесены для удобства), которые динамически подтягивают описание модулей <code>config</code> и <code>pipeline</code>.
 - Это позволяет поддерживать документацию в актуальном состоянии без ручного обновления при изменении кода.</p>
 <h2 id="3-github-pages">3. Публикация в GitHub Pages</h2>
 <p>Настроен CI/CD пайплайн через GitHub Actions (<a href=".github/workflows/docs.yml">docs.yml</a>).</p>
-<p><strong>Сценарий:</strong>
-- Триггер: push в ветку <code>master</code>, если изменились файлы в <code>docs/</code>, <code>mkdocs.yml</code> или зависимости.
-- Сборка: установка зависимостей через <code>uv</code>.
-- Деплой: команда <code>mkdocs gh-deploy</code> автоматически собирает сайт и пушит его в ветку <code>gh-pages</code>.</p>
+<p><strong>Сценарий:</strong></p>
+<ul>
+<li>Триггер: push в ветку <code>master</code>, если изменились файлы в <code>docs/</code>, <code>mkdocs.yml</code> или зависимости.</li>
+<li>Сборка: установка зависимостей через <code>uv</code>.</li>
+<li>Деплой: команда <code>mkdocs gh-deploy</code> автоматически собирает сайт и пушит его в ветку <code>gh-pages</code>.</li>
+</ul>
 <h2 id="4">4. Отчеты и воспроизводимость</h2>
 <ul>
 <li><strong>Эксперименты:</strong> Создана сводная таблица результатов в <a href="../experiments/">experiments.md</a>. Отмечено, что основной трекинг ведется в ClearML.</li>
